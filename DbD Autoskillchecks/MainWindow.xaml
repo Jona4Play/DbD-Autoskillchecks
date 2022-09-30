@@ -1,0 +1,71 @@
+﻿<Window x:Class="DbD_Autoskillchecks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbD_Autoskillchecks"
+        xmlns:viewModel ="clr-namespace:DbD_Autoskillchecks.MWN.ViewModel"
+        mc:Ignorable="d"
+        Title="AutoSkill-Checks" Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:MainViewModel></viewModel:MainViewModel>
+    </Window.DataContext>
+    <Border Background="#272537" CornerRadius="20" MouseDown="GridMouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200">
+
+                </ColumnDefinition>
+                <ColumnDefinition>
+
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition>
+
+                </RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Dead by Coding" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="22" FontFamily="/Fonts/#Poppins"/>
+            <StackPanel Grid.Row="1" Margin="0,0,0,0">
+                <RadioButton Content="Hub" Foreground="white" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" FontFamily="/Fonts/#Poppins"   IsChecked="True" Command="{Binding HomeViewCommand}">
+
+                </RadioButton>
+                <RadioButton Content="SkillCheck Bot" Foreground="white" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" FontFamily="/Fonts/#Poppins" Command="{Binding SkillcheckCommand}">
+
+                </RadioButton>
+                <RadioButton Content="Moonwalk Script" Foreground="white" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" FontFamily="/Fonts/#Poppins" >
+
+                </RadioButton>
+                <RadioButton Content="Debug" Foreground="white" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" FontFamily="/Fonts/#Poppins">
+
+                </RadioButton>
+                <RadioButton Content="Home" Foreground="white" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" FontFamily="/Fonts/#Poppins">
+
+                </RadioButton>
+
+                <RadioButton Name="QuitButton" Content="Quit" Foreground="Red" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}"  Checked="QuitButton_Checked">
+
+                </RadioButton>
+
+            </StackPanel>
+            <TextBox Width="250" Height="40" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Style="{StaticResource ModernTextBox}" Margin="0,18,0,17"></TextBox>
+            <ContentControl Grid.Column="1" Margin="10,10,10,10" Content="{Binding CurrentView}" Grid.Row="1"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="Programmed by Jona4Play" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20"></TextBlock>
+
+
+            <Button  Click="OnButtonSearchPixels" HorizontalAlignment="Center" Content="Run IA" VerticalAlignment="Top" Margin="0,385,0,0" Grid.Row="1"/>
+            <CheckBox Name="runai" IsChecked="False"  HorizontalAlignment="Center" Content="Run IA" VerticalAlignment="Top" Margin="0,361,0,0" Grid.Row="1" Unchecked="runai_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="runai_Checked" />
+            <CheckBox Name="checkkeys" IsChecked="False"  HorizontalAlignment="Center" Content="Check Key" VerticalAlignment="Top" Margin="0,450,0,0" Grid.Row="1" Unchecked="checkkeys_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="checkkeys_Checked" />
+        </Grid>
+    </Border>
+
+</Window>
+
+    
