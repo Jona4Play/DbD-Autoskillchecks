@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
 
 namespace DbD_Autoskillchecks.Core
 {
@@ -17,14 +12,13 @@ namespace DbD_Autoskillchecks.Core
 
             try
             {
-                // Check if file already exists. If yes, delete it.     
+                // Check if file already exists. If yes, delete it.
                 if (File.Exists(fileName))
                 {
                     File.Delete(fileName);
                 }
 
-                File.WriteAllText(fileName, "0\n");
-
+                File.WriteAllText(fileName, "{0}\n" + "{1}\n" + "{2}\n");
             }
             catch (Exception Ex)
             {

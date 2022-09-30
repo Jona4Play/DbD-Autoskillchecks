@@ -18,6 +18,15 @@
             <DataTemplate DataType="{x:Type viewModel:SkillcheckViewModel}">
                 <view:Skillcheck></view:Skillcheck>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView></view:SettingsView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DebugViewModel}">
+                <view:DebugView></view:DebugView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MoonWalkViewModel}">
+                <view:MoonwalkView></view:MoonwalkView>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

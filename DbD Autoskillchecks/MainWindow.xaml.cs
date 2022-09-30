@@ -1,29 +1,21 @@
-﻿using System;
-using System.Windows;
+﻿using DbD_Autoskillchecks.Core;
+using System;
 using System.Runtime.InteropServices;
-using System.Windows.Input;
-using DbD_Autoskillchecks.Core;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
-using System.Threading;
-using System.Windows.Forms.VisualStyles;
-using System.Globalization;
-using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
-using MessageBox = System.Windows.Forms.MessageBox;
-using KeyEventHandler = System.Windows.Input.KeyEventHandler;
-using MouseEventHandler = System.Windows.Input.MouseEventHandler;
-using System.IO;
+using System.Windows.Input;
 
 namespace DbD_Autoskillchecks
 {
-     
     public partial class MainWindow : Window
     {
         public bool shouldexecute = false;
         public bool shouldcheck = false;
+
         [DllImport("user32.dll")]
-            public static extern IntPtr FindWindow(
-            string ClassName,   
+        public static extern IntPtr FindWindow(
+            string ClassName,
             string WindowName);
 
         [DllImport("User32.dll")]
@@ -39,13 +31,13 @@ namespace DbD_Autoskillchecks
             int Msg,
             int wParam,
             int lParam);
-        Skillcheckbot sc = new Skillcheckbot();
+
+        private Skillcheckbot sc = new Skillcheckbot();
 
         public MainWindow()
         {
             InitializeComponent();
         }
-        
 
         private void GridMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -54,6 +46,7 @@ namespace DbD_Autoskillchecks
                 DragMove();
             }
         }
+
         private void OnButtonSearchPixels(object sender, RoutedEventArgs e)
         {
             sc.SkillcheckExecute(true);
@@ -73,28 +66,31 @@ namespace DbD_Autoskillchecks
         {
             System.Windows.Application.Current.Shutdown();
         }
+
         public bool isChecked(CheckBox checkbox)
         {
             if (checkbox.CheckState == CheckState.Checked) return true;
             else return false;
         }
+
         private void runai_Checked(object sender, RoutedEventArgs e)
         {
             shouldexecute = (bool)runai.IsChecked;
             Task.Run(() => ExecuteSkillcheck());
         }
+
         private void ExecuteSkillcheck()
         {
-            while(shouldexecute)
+            while (shouldexecute)
             {
                 sc.SkillcheckExecute(false);
             }
         }
+
         private void CheckKeys()
         {
             while (shouldexecute)
             {
-                
             }
         }
 
@@ -113,10 +109,17 @@ namespace DbD_Autoskillchecks
         {
             shouldcheck = false;
         }
+
         private void SaveOnClick(object sender, RoutedEventArgs e)
         {
             WriteSaveFile writeSaveFile = new WriteSaveFile();
             writeSaveFile.SaveToFile();
+        }
+
+        private void LoadSettings(object sender, RoutedEventArgs e)
+        {
+            ReadSaveFile rsv = new ReadSaveFile();
+            rsv.GetIntFromFile();
         }
     }
 }

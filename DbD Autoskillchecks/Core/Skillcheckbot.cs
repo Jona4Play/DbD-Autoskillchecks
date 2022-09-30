@@ -10,8 +10,11 @@ namespace DbD_Autoskillchecks.Core
 {
     internal class Skillcheckbot : IDisposable
     {
+        private ReadSaveFile rsv = new ReadSaveFile();
+
         //parameters for Skillcheck Detection
         private int minremainingPixels = 280;
+
         private int outerradius = 70;
         private int centerx = Screen.PrimaryScreen.Bounds.Width / 2;
         private int centery = Screen.PrimaryScreen.Bounds.Height / 2;
@@ -23,7 +26,7 @@ namespace DbD_Autoskillchecks.Core
         public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
         public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
         public const int VK_SPACE = 0x20; //Right Control key code
-        ReadSaveFile rsv = new ReadSaveFile();
+
         public void SkillcheckExecute(bool SaveImage, int tolerance = 0)
         {
             /* Deprecated
