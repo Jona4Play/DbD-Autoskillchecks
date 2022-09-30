@@ -3,7 +3,7 @@
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="BorderBrush">
             <Setter.Value>
-                <SolidColorBrush Color="#FF00C3BA"/>
+                <SolidColorBrush Color="#FF00C3BA" />
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
@@ -11,9 +11,9 @@
                 <ControlTemplate TargetType="Button">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.8" CornerRadius="10">
                         <Border.Effect>
-                            <DropShadowEffect Color="#FF72FFE5" ShadowDepth="0"/>
+                            <DropShadowEffect Color="#FF72FFE5" ShadowDepth="0" />
                         </Border.Effect>
-                        <TextBlock Foreground="{TemplateBinding BorderBrush}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Foreground="{TemplateBinding BorderBrush}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

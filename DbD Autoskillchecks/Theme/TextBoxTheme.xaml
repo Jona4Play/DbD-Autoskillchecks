@@ -8,23 +8,21 @@
 
                         <Grid>
                             <Rectangle StrokeThickness="1">
-                                
                             </Rectangle>
-                            <TextBox Margin="1" Text="{TemplateBinding Text}" 
-                                     BorderThickness="0" 
-                                     Background="Transparent" 
-                                     VerticalAlignment="Center" 
-                                     Padding="5" 
+                            <TextBox Margin="1" Text="{TemplateBinding Text}"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     VerticalAlignment="Center"
+                                     Padding="5"
                                      Foreground="#CECECE"
                                      x:Name="SearchBox">
-                                
                             </TextBox>
-                            <TextBlock IsHitTestVisible="False" 
-                                       Text="Search" 
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Left" 
-                                       Margin="20,0,0,0" 
-                                       FontSize="11" 
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="Search"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,0,0,0"
+                                       FontSize="11"
                                        Foreground="DarkGray"
                                        Grid.Column="1">
                                 <TextBlock.Style>
@@ -32,7 +30,6 @@
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
                                                 <Setter Property="Visibility" Value="Visible">
-                                                    
                                                 </Setter>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -40,7 +37,6 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            
                         </Grid>
                     </Border>
                 </ControlTemplate>

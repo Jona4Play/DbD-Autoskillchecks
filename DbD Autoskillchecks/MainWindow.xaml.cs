@@ -113,13 +113,6 @@ namespace DbD_Autoskillchecks
         private void SaveOnClick(object sender, RoutedEventArgs e)
         {
             WriteSaveFile writeSaveFile = new WriteSaveFile();
-            writeSaveFile.SaveToFile();
-        }
-
-        private void LoadSettings(object sender, RoutedEventArgs e)
-        {
-            ReadSaveFile rsv = new ReadSaveFile();
-            rsv.GetIntFromFile();
         }
     }
 }

@@ -13,34 +13,28 @@ namespace DbD_Autoskillchecks.Core
         {
         }
 
-        public void GetIntFromFile()
+        public int GetIntFromFile(int index)
         {
             int[] ints = new int[3];
             string[] strings = File.ReadAllLines(fileName);
             ints = Array.ConvertAll(strings, s => int.Parse(s));
-            foreach (int i in ints)
-                Console.WriteLine(i);
-        }
-
-        private int GetDelayFrameFromFile()
-        {
-            int DelayFrame = Convert.ToInt32(File.ReadAllLines(fileName));
-            return DelayFrame;
-        }
-
-        public int DelayFrame
-        {
-            get { return GetDelayFrameFromFile(); }
+            var value = ints[index];
+            return value;
         }
 
         public int MinRemainingPixels
         {
-            get { return GetDelayFrameFromFile(); }
+            get { return GetIntFromFile(0); }
         }
 
         public int Tolerance
         {
-            get { return GetDelayFrameFromFile(); }
+            get { return GetIntFromFile(1); }
+        }
+
+        public int DelayFrame
+        {
+            get { return GetIntFromFile(2); }
         }
     }
 }

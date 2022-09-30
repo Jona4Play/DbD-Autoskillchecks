@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DbD_Autoskillchecks.Core;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DbD_Autoskillchecks.MWN.View
 {
@@ -23,6 +12,21 @@ namespace DbD_Autoskillchecks.MWN.View
         public SettingsView()
         {
             InitializeComponent();
+            OnInitializeChangeValues();
+        }
+
+        private void OnInitializeChangeValues()
+        {
+            ReadSaveFile rsv = new ReadSaveFile();
+            remainingpixels.Value = rsv.MinRemainingPixels;
+            delayframes.Value = rsv.DelayFrame;
+            tolerance.Value = rsv.Tolerance;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WriteSaveFile wsf = new WriteSaveFile();
+            wsf.SaveToFile((int)remainingpixels.Value, (int)tolerance.Value, (int)delayframes.Value);
         }
     }
 }
