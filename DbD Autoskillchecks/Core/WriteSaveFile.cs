@@ -13,7 +13,7 @@ namespace DbD_Autoskillchecks.Core
         public void SaveToFile()
         {
             Console.WriteLine("Called SaveToFile");
-            string fileName = @"C:\Temp\Mahesh.txt";
+            string fileName = @"C:\Users\jona4\Desktop\ImageAlgorithm\Settings.txt";
 
             try
             {
@@ -23,25 +23,8 @@ namespace DbD_Autoskillchecks.Core
                     File.Delete(fileName);
                 }
 
-                // Create a new file     
-                using (FileStream fs = File.Create(fileName))
-                {
-                    // Add some text to file    
-                    Byte[] title = new UTF8Encoding(true).GetBytes("New Text File");
-                    fs.Write(title, 0, title.Length);
-                    byte[] author = new UTF8Encoding(true).GetBytes("Mahesh Chand");
-                    fs.Write(author, 0, author.Length);
-                }
+                File.WriteAllText(fileName, "0\n");
 
-                // Open the stream and read it back.    
-                using (StreamReader sr = File.OpenText(fileName))
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(s);
-                    }
-                }
             }
             catch (Exception Ex)
             {

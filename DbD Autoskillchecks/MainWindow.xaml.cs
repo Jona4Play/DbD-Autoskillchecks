@@ -78,8 +78,6 @@ namespace DbD_Autoskillchecks
             if (checkbox.CheckState == CheckState.Checked) return true;
             else return false;
         }
-
-        [Obsolete]
         private void runai_Checked(object sender, RoutedEventArgs e)
         {
             shouldexecute = (bool)runai.IsChecked;
@@ -117,7 +115,8 @@ namespace DbD_Autoskillchecks
         }
         private void SaveOnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Created Save File under: " + Directory.GetCurrentDirectory());
+            WriteSaveFile writeSaveFile = new WriteSaveFile();
+            writeSaveFile.SaveToFile();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace DbD_Autoskillchecks.Core
         public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
         public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
         public const int VK_SPACE = 0x20; //Right Control key code
-
+        ReadSaveFile rsv = new ReadSaveFile();
         public void SkillcheckExecute(bool SaveImage, int tolerance = 0)
         {
             /* Deprecated
@@ -75,7 +75,7 @@ namespace DbD_Autoskillchecks.Core
                 if (WhitePixels < minremainingPixels)
                 {
                     Console.WriteLine("Overlap");
-                    pressSpace();
+                    pressSpace(rsv.DelayFrame);
                 }
             }
             else

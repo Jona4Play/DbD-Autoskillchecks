@@ -89,6 +89,7 @@
     <Compile Include="Core\Filter.cs" />
     <Compile Include="Core\GetKeyPress.cs" />
     <Compile Include="Core\ObservableObject.cs" />
+    <Compile Include="Core\ReadSaveFile.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\Skillcheckbot.cs" />
     <Compile Include="Core\WriteSaveFile.cs" />
