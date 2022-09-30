@@ -23,7 +23,6 @@ namespace DbD_Autoskillchecks.MWN.View
     public partial class Skillcheck : UserControl
     {
         Skillcheckbot skillcheckbot = new Skillcheckbot();
-        bool isRunning = false;
         public Skillcheck()
         {
             InitializeComponent();

@@ -61,6 +61,7 @@
 
 
             <Button  Click="OnButtonSearchPixels" HorizontalAlignment="Center" Content="Run IA" VerticalAlignment="Top" Margin="0,385,0,0" Grid.Row="1"/>
+            <Button  Click="SaveOnClick" HorizontalAlignment="Center" Content="Save Settings" VerticalAlignment="Top" Margin="0,420,0,0" Grid.Row="1"/>
             <CheckBox Name="runai" IsChecked="False"  HorizontalAlignment="Center" Content="Run IA" VerticalAlignment="Top" Margin="0,361,0,0" Grid.Row="1" Unchecked="runai_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="runai_Checked" />
             <CheckBox Name="checkkeys" IsChecked="False"  HorizontalAlignment="Center" Content="Check Key" VerticalAlignment="Top" Margin="0,450,0,0" Grid.Row="1" Unchecked="checkkeys_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="checkkeys_Checked" />
         </Grid>

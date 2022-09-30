@@ -12,6 +12,7 @@ using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 using MessageBox = System.Windows.Forms.MessageBox;
 using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 using MouseEventHandler = System.Windows.Input.MouseEventHandler;
+using System.IO;
 
 namespace DbD_Autoskillchecks
 {
@@ -40,25 +41,9 @@ namespace DbD_Autoskillchecks
             int lParam);
         Skillcheckbot sc = new Skillcheckbot();
 
-
-
-
-        private void keyUpmeth(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue.Equals(Key.C))
-                MessageBox.Show("YAY!!!");
-        }
-
-
         public MainWindow()
         {
             InitializeComponent();
-            InitializeKeyboard();
-        }
-
-        private void InitializeKeyboard()
-        {
-
         }
         
 
@@ -130,12 +115,9 @@ namespace DbD_Autoskillchecks
         {
             shouldcheck = false;
         }
-
-
-        private void keyUp(object sender, KeyEventArgs e)
+        private void SaveOnClick(object sender, RoutedEventArgs e)
         {
-            //Your code...
+            MessageBox.Show("Created Save File under: " + Directory.GetCurrentDirectory());
         }
-
     }
 }

@@ -1,32 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using DbD_Autoskillchecks.Core;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DbD_Autoskillchecks.Core
 {
-    class Skillcheckbot : IDisposable
+    internal class Skillcheckbot : IDisposable
     {
-
-
         //parameters for Skillcheck Detection
-        int tolerancePx = 7;
-        int minremainingPixels = 280;
-        int outerradius = 70;
-        int centerx = Screen.PrimaryScreen.Bounds.Width / 2;
-        int centery = Screen.PrimaryScreen.Bounds.Height / 2;
-        Filter filter = new Filter();
+        private int minremainingPixels = 280;
+        private int outerradius = 70;
+        private int centerx = Screen.PrimaryScreen.Bounds.Width / 2;
+        private int centery = Screen.PrimaryScreen.Bounds.Height / 2;
+        private Filter filter = new Filter();
+
         [DllImport("user32.dll", SetLastError = true)]
-        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
         public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
         public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
         public const int VK_SPACE = 0x20; //Right Control key code
@@ -57,9 +50,9 @@ namespace DbD_Autoskillchecks.Core
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine("Time Elapsed " + elapsedMs);
-            
+
             Debug Section used for Development
-            screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);       
+            screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
             */
             Console.WriteLine("Start Cyle");
             var watch = Stopwatch.StartNew();
@@ -68,24 +61,22 @@ namespace DbD_Autoskillchecks.Core
             gfxScreenshot.CopyFromScreen(centerx - outerradius, centery - outerradius, 0, 0, new Size(140, 140), CopyPixelOperation.SourceCopy);
             ///Bitmap compBmp = (Bitmap)Bitmap.FromFile("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\comp.bmp");
             int WhitePixels = DetectColorWithUnsafe(screenshot, 255, 255, 255, tolerance);
-            if (SaveImage) 
+            if (SaveImage)
             {
-                
                 filter.DetectColorWithUnsafe(screenshot, 255, 255, 255, 0);
                 screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
                 Console.WriteLine("Ran Debug");
             }
             ///Console.WriteLine("Program now testing Similarities");
-            
+
             if (WhitePixels >= 200)
             {
                 Console.WriteLine("Enough White Pixels");
-                if(WhitePixels < minremainingPixels)
+                if (WhitePixels < minremainingPixels)
                 {
                     Console.WriteLine("Overlap");
                     pressSpace();
                 }
-                
             }
             else
             {
@@ -96,6 +87,7 @@ namespace DbD_Autoskillchecks.Core
             //Console.WriteLine("Time Elapsed " + elapsedMs);
             Console.WriteLine("Stop Cycle");
         }
+
         private static unsafe int DetectColorWithUnsafe(Bitmap image, byte searchedR, byte searchedG, int searchedB, int tolerance)
         {
             BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
@@ -129,8 +121,6 @@ namespace DbD_Autoskillchecks.Core
 
                     int distance = diffR * diffR + diffG * diffG + diffB * diffB;
 
-
-
                     if (distance > toleranceSquared)
                     {
                         row[rIndex] = row[bIndex] = row[gIndex] = unmatchingValue;
@@ -142,16 +132,15 @@ namespace DbD_Autoskillchecks.Core
                     }
                 }
             }
-            if(WhitePixelCount > 0)
+            if (WhitePixelCount > 0)
             {
                 Console.WriteLine("Filter ran successfully and searched for " + WhitePixelCount + " Pixels");
             }
-                
+
             image.UnlockBits(imageData);
             return WhitePixelCount;
-
         }
-        
+
         private void pressSpace(int DelayFrame = 0)
         {
             double delayMs = Math.Ceiling(DelayFrame * 16.666f);
