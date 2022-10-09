@@ -24,7 +24,7 @@ namespace DbD_Autoskillchecks.Core
         public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
         public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
         public const int VK_SPACE = 0x20; //Right Control key code
-
+        WhitePixels wp = new WhitePixels();
         public void SkillcheckExecute(bool SaveImage)
         {
             /* Deprecated
@@ -70,28 +70,29 @@ namespace DbD_Autoskillchecks.Core
             }
             //Console.WriteLine("Program now testing Similarities");
 
-            if (WhitePixels >= 200)
+            if (WhitePixels >= rsv.MinRemainingPixels)
             {
-                Console.WriteLine("Enough White Pixels");
-                if (WhitePixels < rsv.MinRemainingPixels)
+                //Console.WriteLine("Enough White Pixels");
+                if ((WhitePixels-wp.LastFrameWhitePixels) > 25 && wp.LastFrameWhitePixels != 0)
                 {
                     Console.WriteLine("Overlap");
-                    pressSpace(rsv.DelayFrame);
+                    pressSpace();
                 }
             }
             else
             {
-                Console.WriteLine("Not enough white pixels");
+                //Console.WriteLine("Not enough white pixels");
             }
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-            Console.WriteLine("Time Elapsed " + elapsedMs);
+            //Console.WriteLine("Time Elapsed " + elapsedMs);
             //Console.WriteLine("Stop Cycle");
+            wp.LastFrameWhitePixels = WhitePixels;
         }
 
-        private void pressSpace(int DelayFrame = 0)
+        private void pressSpace()
         {
-            double delayMs = Math.Ceiling(DelayFrame * 16.666f);
+            double delayMs = Math.Ceiling(rsv.DelayFrame * 16.666f);
             Task.Delay((int)delayMs);
             keybd_event(VK_SPACE, 0, KEYEVENTF_EXTENDEDKEY, 0);
             Task.Delay(2);

@@ -6,11 +6,15 @@
              xmlns:local="clr-namespace:DbD_Autoskillchecks.MWN.View"
              mc:Ignorable="d"
              d:DesignHeight="505" d:DesignWidth="700">
+    
     <StackPanel>
+        <Button Content="Check Gamestate" Background="Transparent" Foreground="White" BorderBrush="White" Height="40" FontSize="20" Click="Button_Click"></Button>
         <TextBlock Text="Hub" Foreground="white" FontSize="28" HorizontalAlignment="Left" Margin="0,0,0,20">
+        
         </TextBlock>
+        
         <StackPanel Orientation="Horizontal">
-            <Border Width="300" Height="200" HorizontalAlignment="Center" Margin="20,0,0,0">
+            <Border Name="runningbox" IsEnabled="False" Width="300" Height="200" HorizontalAlignment="Center" Margin="20,0,0,0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#00ff80" Offset="0.0"></GradientStop>
@@ -23,20 +27,19 @@
                 </Border.Clip>
                 <Grid>
                     <StackPanel>
-                        <TextBlock Text="Dead by Daylight&#x0a;is running" Foreground="white" FontSize="28" Margin="20,10,10,0" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Text="Dead by Daylight&#x0a;is running" Foreground="white" FontSize="28" Margin="20,10,10,0" HorizontalAlignment="Center" Name="runningtext"></TextBlock>
                     </StackPanel>
                 </Grid>
             </Border>
-            <Border Width="300" Height="200" CornerRadius="10"  HorizontalAlignment="Right" Margin="50, 0,0,0
-                    ">
+            <Border Name="notrunningbox" Width="300" Height="200" CornerRadius="10"  HorizontalAlignment="Right" Margin="50, 0,0,0">
                 <Border.Background>
-                    <LinearGradientBrush>
+                    <LinearGradientBrush >
                         <GradientStop Color="#ff1a1a" Offset="0.0" />
                         <GradientStop Color="#cc0000" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
-                    <TextBlock Text="Dead by Daylight&#x0a;isn't running" Foreground="white" FontSize="28" Margin="20,10,10,0" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Dead by Daylight&#x0a;isn't running" Foreground="white" FontSize="28" Margin="20,10,10,0" HorizontalAlignment="Center" Name="notrunningtext"></TextBlock>
                 </Grid>
             </Border>
         </StackPanel>

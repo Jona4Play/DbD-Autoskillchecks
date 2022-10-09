@@ -31,12 +31,14 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBlock Background="Transparent" Foreground="#D8DAC8" Text="Remaining&#x0a;Pixels" TextAlignment="Center" FontSize="20"></TextBlock>
-            <xctk:IntegerUpDown  BorderThickness="0" Name="remainingpixels" BorderBrush="White" Value="0" Width="60" Height="20" Background="#D8DAC8" Foreground="Black" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,0,20" />
+            <TextBlock Background="Transparent" Foreground="#D8DAC8" Text="Overlap&#x0a;Pixels" TextAlignment="Center" FontSize="20"></TextBlock>
+            <xctk:IntegerUpDown  BorderThickness="0" Name="overlappixels" BorderBrush="White" Value="0" Width="60" Height="20" Background="#D8DAC8" Foreground="Black" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,0,20" />
             <TextBlock Background="Transparent" Foreground="#D8DAC8" Text="Tolerance&#x0a;Pixels" TextAlignment="Center" FontSize="20" Grid.Column="1"></TextBlock>
             <xctk:IntegerUpDown BorderThickness="0" BorderBrush="White" Name="tolerance" Value="0" Width="60" Height="20" Background="#D8DAC8" Foreground="Black" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,20" />
             <TextBlock Background="Transparent" Foreground="#D8DAC8" Text="Delay&#x0a;Frame" TextAlignment="Center" FontSize="20" Grid.Column="2"></TextBlock>
             <xctk:IntegerUpDown  BorderThickness="0" BorderBrush="White" Name="delayframes" Value="0" Width="60" Height="20" Background="#D8DAC8" Foreground="Black" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Margin="0,0,0,20" />
+            <TextBlock Background="Transparent" Foreground="#D8DAC8" Text="Minimal&#x0a;Pixels" TextAlignment="Center" FontSize="20" Grid.Column="0" Grid.Row="1"></TextBlock>
+            <xctk:IntegerUpDown  BorderThickness="0" BorderBrush="White" Name="minremainingpixels" Value="0" Width="60" Height="20" Background="#D8DAC8" Foreground="Black" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,0,20" />
             <Button Grid.Row="1" Grid.Column="1" Width="80" Height="30" Content="Save To File" BorderBrush="White" Background="Transparent" Foreground="White" BorderThickness="2" FontSize="13" Click="Button_Click"></Button>
         </Grid>
         <Grid>

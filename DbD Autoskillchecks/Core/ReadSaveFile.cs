@@ -11,18 +11,19 @@ namespace DbD_Autoskillchecks.Core
 
         public ReadSaveFile()
         {
+
         }
 
         public int GetIntFromFile(int index)
         {
-            int[] ints = new int[3];
+            int[] ints = new int[4];
             string[] strings = File.ReadAllLines(fileName);
             ints = Array.ConvertAll(strings, s => int.Parse(s));
             var value = ints[index];
             return value;
         }
 
-        public int MinRemainingPixels
+        public int OverlapPixels
         {
             get { return GetIntFromFile(0); }
         }
@@ -35,6 +36,10 @@ namespace DbD_Autoskillchecks.Core
         public int DelayFrame
         {
             get { return GetIntFromFile(2); }
+        }
+        public int MinRemainingPixels
+        {
+            get { return GetIntFromFile(3); }
         }
     }
 }

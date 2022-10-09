@@ -18,15 +18,16 @@ namespace DbD_Autoskillchecks.MWN.View
         private void OnInitializeChangeValues()
         {
             ReadSaveFile rsv = new ReadSaveFile();
-            remainingpixels.Value = rsv.MinRemainingPixels;
+            overlappixels.Value = rsv.OverlapPixels;
             delayframes.Value = rsv.DelayFrame;
             tolerance.Value = rsv.Tolerance;
+            minremainingpixels.Value = rsv.MinRemainingPixels;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             WriteSaveFile wsf = new WriteSaveFile();
-            wsf.SaveToFile((int)remainingpixels.Value, (int)tolerance.Value, (int)delayframes.Value);
+            wsf.SaveToFile((int)overlappixels.Value, (int)tolerance.Value, (int)delayframes.Value, (int)minremainingpixels.Value);
         }
     }
 }

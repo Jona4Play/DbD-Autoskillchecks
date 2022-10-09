@@ -5,7 +5,7 @@ namespace DbD_Autoskillchecks.Core
 {
     internal class WriteSaveFile
     {
-        public void SaveToFile(int remainingpixels, int tolerance, int delayframes)
+        public void SaveToFile(int overlappixels, int tolerance, int delayframes, int minremainingpixels)
         {
             Console.WriteLine("Called SaveToFile");
             string fileName = @"C:\Users\jona4\Desktop\ImageAlgorithm\Settings.txt";
@@ -18,7 +18,7 @@ namespace DbD_Autoskillchecks.Core
                     File.Delete(fileName);
                 }
 
-                File.WriteAllText(fileName, remainingpixels + "\n" + tolerance + "\n" + delayframes + "\n");
+                File.WriteAllText(fileName, overlappixels + "\n" + tolerance + "\n" + delayframes + "\n" + minremainingpixels +"\n");
             }
             catch (Exception Ex)
             {
