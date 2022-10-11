@@ -7,8 +7,10 @@ namespace DbD_Autoskillchecks.Core
     {
         public void SaveToFile(int overlappixels, int tolerance, int delayframes, int minremainingpixels)
         {
-            Console.WriteLine("Called SaveToFile");
-            string fileName = @"C:\Users\jona4\Desktop\ImageAlgorithm\Settings.txt";
+            string directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string settings = Path.Combine(directory, "Settings.txt");
+            Console.WriteLine("Called SaveToFile and saving to {0}" , settings);
+            string fileName = settings;
 
             try
             {

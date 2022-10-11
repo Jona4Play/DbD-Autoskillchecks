@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,8 @@ namespace DbD_Autoskillchecks.Core
         public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
         public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
         public const int VK_SPACE = 0x20; //Right Control key code
-        WhitePixels wp = new WhitePixels();
+        private WhitePixels wp = new WhitePixels();
+
         public void SkillcheckExecute(bool SaveImage)
         {
             /* Deprecated
@@ -56,16 +58,19 @@ namespace DbD_Autoskillchecks.Core
             screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
             */
             //Console.WriteLine("Start Cyle");
+
             var watch = Stopwatch.StartNew();
+
             Bitmap screenshot = new Bitmap(outerradius * 2, outerradius * 2, PixelFormat.Format24bppRgb);
             var gfxScreenshot = Graphics.FromImage(screenshot);
             gfxScreenshot.CopyFromScreen(centerx - outerradius, centery - outerradius, 0, 0, new Size(140, 140), CopyPixelOperation.SourceCopy);
-            //Bitmap compBmp = (Bitmap)Bitmap.FromFile("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\comp.bmp");
             int WhitePixels = filter.DetectColorWithUnsafe(screenshot, 255, 255, 255, rsv.Tolerance);
             if (SaveImage)
             {
+                string directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                string debugimage = Path.Combine(directory, "debug.bmp");
                 filter.DetectColorWithUnsafeImage(screenshot, 255, 255, 255, 0);
-                screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
+                screenshot.Save(debugimage, ImageFormat.Bmp);
                 Console.WriteLine("Ran Debug");
             }
             //Console.WriteLine("Program now testing Similarities");
@@ -73,7 +78,7 @@ namespace DbD_Autoskillchecks.Core
             if (WhitePixels >= rsv.MinRemainingPixels)
             {
                 //Console.WriteLine("Enough White Pixels");
-                if ((WhitePixels-wp.LastFrameWhitePixels) > 25 && wp.LastFrameWhitePixels != 0)
+                if ((WhitePixels - wp.LastFrameWhitePixels) > 25 && wp.LastFrameWhitePixels != 0)
                 {
                     Console.WriteLine("Overlap");
                     pressSpace();

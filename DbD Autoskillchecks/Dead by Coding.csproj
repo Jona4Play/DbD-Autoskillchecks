@@ -104,12 +104,13 @@
     <Compile Include="Core\Async.cs" />
     <Compile Include="Core\Filter.cs" />
     <Compile Include="Core\GetKeyPress.cs" />
+    <Compile Include="Core\GlobalHotkey.cs" />
+    <Compile Include="Core\HotkeysManager.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\ReadSaveFile.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\Skillcheckbot.cs" />
     <Compile Include="Core\WhitePixels.cs" />
-    <Compile Include="Core\Win32API.cs" />
     <Compile Include="Core\WriteSaveFile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

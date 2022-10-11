@@ -6,8 +6,9 @@ namespace DbD_Autoskillchecks.Core
 {
     internal class ReadSaveFile
     {
-        private string fileName = @"C:\Users\jona4\Desktop\ImageAlgorithm\Settings.txt";
-        private int fileLength = File.ReadLines(@"C:\Users\jona4\Desktop\ImageAlgorithm\Settings.txt").Count();
+        static private string directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+        static private string fileName = Path.Combine(directory, "Settings.txt");
+        private int fileLength = File.ReadLines(fileName).Count();
 
         public ReadSaveFile()
         {
