@@ -9,7 +9,7 @@ namespace DbD_Autoskillchecks.Core
         {
             string directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string settings = Path.Combine(directory, "Settings.txt");
-            Console.WriteLine("Called SaveToFile and saving to {0}" , settings);
+            Console.WriteLine("Called SaveToFile and saving to {0}", settings);
             string fileName = settings;
 
             try
@@ -20,7 +20,7 @@ namespace DbD_Autoskillchecks.Core
                     File.Delete(fileName);
                 }
 
-                File.WriteAllText(fileName, overlappixels + "\n" + tolerance + "\n" + delayframes + "\n" + minremainingpixels +"\n");
+                File.WriteAllText(fileName, overlappixels + "\n" + tolerance + "\n" + delayframes + "\n" + minremainingpixels + "\n");
             }
             catch (Exception Ex)
             {

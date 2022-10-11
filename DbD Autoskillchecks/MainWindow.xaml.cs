@@ -41,7 +41,7 @@ namespace DbD_Autoskillchecks
         {
             Console.WriteLine("Pressed S");
         }
-        
+
         private void GridMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

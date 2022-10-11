@@ -24,7 +24,7 @@ namespace DbD_Autoskillchecks.Core
 
         public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
         public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
-        public const int VK_SPACE = 0x20; //Right Control key code
+        public const int VK_SPACE = 0x20; //Space Key Code
         private WhitePixels wp = new WhitePixels();
 
         public void SkillcheckExecute(bool SaveImage)
