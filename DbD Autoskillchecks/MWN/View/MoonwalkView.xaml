@@ -23,25 +23,8 @@
 
 			</RowDefinition>
 		</Grid.RowDefinitions>
-		<Grid Grid.Row="0" Grid.Column="0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition>
 
-				</ColumnDefinition>
-				<ColumnDefinition>
-					
-				</ColumnDefinition>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition>
-					
-				</RowDefinition>
-				<RowDefinition>
-					
-				</RowDefinition>
-			</Grid.RowDefinitions>
-            <CheckBox		BorderThickness="1"	BorderBrush="White"	Name="CheckKeys"	Content="Check	for Keys"	Width="100" Height="20"	Foreground="White"	Background="Transparent"	HorizontalAlignment="Center"	VerticalAlignment="Center" IsEnabled="False"/>
-        </Grid>
+        <CheckBox	BorderThickness="1"	BorderBrush="White"	Name="CheckKeys"	Content="Check	for Keys"	Width="100" Height="20"	Foreground="White"	Background="Transparent"	HorizontalAlignment="Center"	VerticalAlignment="Center" IsEnabled="False" Checked="CheckKeys_Checked" Unchecked="CheckKeys_Unchecked"/>
         <Label	Content="Moonwalking Macro"	HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0"	Foreground="White"	Background="Transparent"	FontFamily="/Fonts/#Poppins"	FontSize="28"></Label>
 	</Grid>
 </UserControl>
