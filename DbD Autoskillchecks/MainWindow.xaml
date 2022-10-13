@@ -48,7 +48,6 @@
             <TextBox Width="250" Height="40" VerticalContentAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Style="{StaticResource ModernTextBox}" Margin="0,18,0,17"></TextBox>
             <ContentControl Grid.Column="1" Margin="10,10,10,10" Content="{Binding CurrentView}" Grid.Row="1" />
             <TextBlock Grid.Column="1" Grid.Row="1" Text="Programmed by Jona4Play" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20"></TextBlock>
-
             <Button  Click="OnButtonSearchPixels" HorizontalAlignment="Center" Content="Run IA" VerticalAlignment="Top" Margin="0,385,0,0" Grid.Row="1" />
             <CheckBox Name="runai" IsChecked="False"  HorizontalAlignment="Center" Content="Run IA" VerticalAlignment="Top" Margin="0,361,0,0" Grid.Row="1" Unchecked="runai_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="runai_Checked" />
             <CheckBox Name="checkkeys" IsChecked="False"  HorizontalAlignment="Center" Content="Check Key" VerticalAlignment="Top" Margin="0,420,0,0" Grid.Row="1" Unchecked="checkkeys_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="checkkeys_Checked" />

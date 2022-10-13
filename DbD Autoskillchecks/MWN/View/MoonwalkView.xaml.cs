@@ -19,33 +19,37 @@ namespace DbD_Autoskillchecks.MWN.View
 		public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
 		public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
 		public const int VK_D = 0x44; //Space Key Code
-		public const int VK_A = 0x41; //Space Key Code
-		private static bool shouldexecute = false;
+		public const int VK_A = 0x41; //Space Key C
 		ReadSaveFile rsv = new ReadSaveFile();
 		public MoonwalkView()
 		{
 			InitializeComponent();
 		}
 
-		private void CheckKeys_Checked(object sender, System.Windows.RoutedEventArgs e)
+		private void checkkeys_Checked(object sender, System.Windows.RoutedEventArgs e)
 		{
-			shouldexecute = true;
-			Task.Run(() => ExecuteMoonWalk());
+			bool shouldexecute = true;
+			Task.Run(() => ExecuteMoonWalk(shouldexecute));
 		}
 
-		private void CheckKeys_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+		private void checkkeys_Unchecked(object sender, System.Windows.RoutedEventArgs e)
 		{
-			shouldexecute = false;
-			Task.Run(() => ExecuteMoonWalk());
+			bool shouldexecute = false;
+			Task.Run(() => ExecuteMoonWalk(shouldexecute));
 		}
-		private void ExecuteMoonWalk()
+		private void ExecuteMoonWalk(bool execute)
 		{
-			while (IsKeyPushedDown(Keys.F))
+			while (execute)
 			{
-				pressA();
-				Task.Delay(rsv.MoonwalkDelay).Wait();
-				pressD();
-				Task.Delay(rsv.MoonwalkDelay).Wait();
+				Console.WriteLine("Checking for Keys");
+				while (IsKeyPushedDown(Keys.F))
+				{
+					Console.WriteLine("Executing Moonwalk");
+					pressA();
+					Task.Delay(rsv.MoonwalkDelay).Wait();
+					pressD();
+					Task.Delay(rsv.MoonwalkDelay).Wait();
+				}
 			}
 		}
 		[DllImport("user32.dll")]
