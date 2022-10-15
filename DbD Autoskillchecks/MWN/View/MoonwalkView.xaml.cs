@@ -1,11 +1,8 @@
 ﻿using DbD_Autoskillchecks.Core;
 using System;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace DbD_Autoskillchecks.MWN.View
 {
@@ -16,11 +13,14 @@ namespace DbD_Autoskillchecks.MWN.View
 	{
 		[DllImport("user32.dll", SetLastError = true)]
 		private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
+		private static bool shouldexecute;
 		public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
 		public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
 		public const int VK_D = 0x44; //Space Key Code
 		public const int VK_A = 0x41; //Space Key C
-		ReadSaveFile rsv = new ReadSaveFile();
+		private ReadSaveFile rsv = new ReadSaveFile();
+
 		public MoonwalkView()
 		{
 			InitializeComponent();
@@ -28,23 +28,21 @@ namespace DbD_Autoskillchecks.MWN.View
 
 		private void checkkeys_Checked(object sender, System.Windows.RoutedEventArgs e)
 		{
-			bool shouldexecute = true;
-			Task.Run(() => ExecuteMoonWalk(shouldexecute));
+			shouldexecute = true;
+			Task.Run(() => ExecuteMoonWalk());
 		}
 
 		private void checkkeys_Unchecked(object sender, System.Windows.RoutedEventArgs e)
 		{
-			bool shouldexecute = false;
-			Task.Run(() => ExecuteMoonWalk(shouldexecute));
+			shouldexecute = false;
 		}
-		private void ExecuteMoonWalk(bool execute)
+
+		private void ExecuteMoonWalk()
 		{
-			while (execute)
+			while (shouldexecute)
 			{
-				Console.WriteLine("Checking for Keys");
-				while (IsKeyPushedDown(Keys.F))
+				if (IsKeyPushedDown(Keys.F))
 				{
-					Console.WriteLine("Executing Moonwalk");
 					pressA();
 					Task.Delay(rsv.MoonwalkDelay).Wait();
 					pressD();
@@ -52,6 +50,7 @@ namespace DbD_Autoskillchecks.MWN.View
 				}
 			}
 		}
+
 		[DllImport("user32.dll")]
 		private static extern short GetAsyncKeyState(Keys vKey);
 
@@ -60,6 +59,7 @@ namespace DbD_Autoskillchecks.MWN.View
 			var pressed = 0 != (GetAsyncKeyState((Keys)(int)vKey) & 0x8000);
 			return pressed;
 		}
+
 		private void pressA()
 		{
 			keybd_event(VK_A, 0, KEYEVENTF_EXTENDEDKEY, 0);
@@ -67,6 +67,7 @@ namespace DbD_Autoskillchecks.MWN.View
 			keybd_event(VK_A, 0, KEYEVENTF_KEYUP, 0);
 			Console.WriteLine("Pressed A");
 		}
+
 		private void pressD()
 		{
 			keybd_event(VK_D, 0, KEYEVENTF_EXTENDEDKEY, 0);
