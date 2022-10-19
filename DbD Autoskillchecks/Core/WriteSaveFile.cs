@@ -5,22 +5,21 @@ namespace DbD_Autoskillchecks.Core
 {
 	internal class WriteSaveFile
 	{
+		TargetDirectory targetDirectory = new TargetDirectory();
 		public void SaveToFile(int overlappixels, int tolerance, int delayframes, int minremainingpixels, int moonwalkDelay)
 		{
-			string directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-			string settings = Path.Combine(directory, "Settings.txt");
+			string settings = Path.Combine(targetDirectory.TargetPath, "Settings.txt");
 			Console.WriteLine("Called SaveToFile and saving to {0}", settings);
-			string fileName = settings;
 
 			try
 			{
 				// Check if file already exists. If yes, delete it.
-				if (File.Exists(fileName))
+				if (File.Exists(settings))
 				{
-					File.Delete(fileName);
+					File.Delete(settings);
 				}
 
-				File.WriteAllText(fileName, overlappixels + "\n" + tolerance + "\n" + delayframes + "\n" + minremainingpixels + "\n" + moonwalkDelay + "\n");
+				File.WriteAllText(settings, overlappixels + "\n" + tolerance + "\n" + delayframes + "\n" + minremainingpixels + "\n" + moonwalkDelay + "\n");
 			}
 			catch (Exception Ex)
 			{

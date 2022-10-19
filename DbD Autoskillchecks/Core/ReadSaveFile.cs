@@ -6,9 +6,7 @@ namespace DbD_Autoskillchecks.Core
 {
 	internal class ReadSaveFile
 	{
-		static private string directory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-		static private string fileName = Path.Combine(directory, "Settings.txt");
-		private int fileLength = File.ReadLines(fileName).Count();
+		private TargetDirectory targetDirectory = new TargetDirectory();
 
 		public ReadSaveFile()
 		{
@@ -17,7 +15,7 @@ namespace DbD_Autoskillchecks.Core
 
 		public int GetIntFromFile(int index)
 		{
-
+			string fileName = Path.Combine(targetDirectory.TargetPath, "Settings.txt");
 			int[] ints = new int[5];
 			string[] strings = File.ReadAllLines(fileName);
 			ints = Array.ConvertAll(strings, s => int.Parse(s));
