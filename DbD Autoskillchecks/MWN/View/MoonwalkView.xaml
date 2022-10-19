@@ -18,7 +18,7 @@
 			<RowDefinition>
 			</RowDefinition>
 		</Grid.RowDefinitions>
-        <CheckBox Name="checkkeys" IsChecked="False"  HorizontalAlignment="Center" Content="Check Key" VerticalAlignment="Center" Grid.Column="0" Unchecked="checkkeys_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="checkkeys_Checked"	FontSize="20" FontFamily="/Fonts/#Poppins" Width="140"/>
+		<CheckBox Name="checkkeys" IsChecked="False"  HorizontalAlignment="Center" Content="Check Key" VerticalAlignment="Center" Grid.Column="0" Unchecked="checkkeys_Unchecked" Foreground="White" Background="White" BorderBrush="White" Checked="checkkeys_Checked"	FontSize="20" FontFamily="/Fonts/#Poppins" Width="140" />
 		<Label	Content="Moonwalking Macro"	HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0"	Foreground="White"	Background="Transparent"	FontFamily="/Fonts/#Poppins"	FontSize="28"></Label>
 	</Grid>
 </UserControl>

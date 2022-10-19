@@ -8,6 +8,6 @@ namespace DbD_Autoskillchecks.Core
 {
 	class ImageAlgorithm
 	{
-
+		
 	}
 }

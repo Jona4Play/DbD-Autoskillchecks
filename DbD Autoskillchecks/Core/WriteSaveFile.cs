@@ -5,7 +5,8 @@ namespace DbD_Autoskillchecks.Core
 {
 	internal class WriteSaveFile
 	{
-		TargetDirectory targetDirectory = new TargetDirectory();
+		private TargetDirectory targetDirectory = new TargetDirectory();
+
 		public void SaveToFile(int overlappixels, int tolerance, int delayframes, int minremainingpixels, int moonwalkDelay)
 		{
 			string settings = Path.Combine(targetDirectory.TargetPath, "Settings.txt");

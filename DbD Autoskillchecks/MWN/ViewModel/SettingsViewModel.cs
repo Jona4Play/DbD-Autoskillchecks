@@ -1,6 +1,6 @@
 ﻿namespace DbD_Autoskillchecks.MWN.ViewModel
 {
-    internal class SettingsViewModel
-    {
-    }
+	internal class SettingsViewModel
+	{
+	}
 }
