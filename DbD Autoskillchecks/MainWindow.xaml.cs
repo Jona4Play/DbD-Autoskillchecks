@@ -1,4 +1,5 @@
 ﻿using DbD_Autoskillchecks.Core;
+using DbD_Autoskillchecks.Core.Files;
 using DbD_Autoskillchecks.MWN.View;
 using System;
 using System.Runtime.InteropServices;
@@ -12,14 +13,9 @@ namespace DbD_Autoskillchecks
 {
 	public partial class MainWindow : Window
 	{
-		public bool shouldexecute = false;
-		public bool shouldcheck = false;
+		private bool shouldexecute = false;
+		private bool shouldcheck = false;
 
-		[DllImport("user32.dll")]
-		public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
-
-		[DllImport("user32.dll")]
-		public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
 		private Skillcheckbot sc = new Skillcheckbot();
 		private HomeView homeView = new HomeView();
@@ -27,17 +23,8 @@ namespace DbD_Autoskillchecks
 		public MainWindow()
 		{
 			InitializeComponent();
-			/*HotkeysManager.SetupSystemHook();
-            HotkeysManager.AddHotkey(new GlobalHotkey(ModifierKeys.Shift, Key.S, () => { AddToList(); }));
-            Closing += MainWindow_Closing; */
 		}
 
-		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			// Need to shutdown the hook. idk what happens if
-			// you dont, but it might cause a memory leak.
-			HotkeysManager.ShutdownSystemHook();
-		}
 
 		public void AddToList()
 		{
@@ -54,7 +41,13 @@ namespace DbD_Autoskillchecks
 
 		private void OnButtonSearchPixels(object sender, RoutedEventArgs e)
 		{
-			sc.SkillcheckExecute(true);
+			SaveFile saveFile = new SaveFile();
+			saveFile.AddProperty(280, "MinRemainingPixels");
+			saveFile.AddProperty(232, "Retry");
+			saveFile.AddProperty(280, "DelayFrame");
+			saveFile.AddProperty(280, "DE");
+			saveFile.SaveToFile();
+			//sc.SkillcheckExecute(true);
 		}
 
 		private void CheckBox_CheckedChangedAsync(object sender, RoutedEventArgs e)

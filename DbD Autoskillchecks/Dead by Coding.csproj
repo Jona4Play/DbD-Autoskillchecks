@@ -101,16 +101,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Async.cs" />
-    <Compile Include="Core\TargetDirectory.cs" />
-    <Compile Include="Core\GlobalHotkey.cs" />
-    <Compile Include="Core\HotkeysManager.cs" />
-    <Compile Include="Core\ImageAlgorithm.cs" />
-    <Compile Include="Core\ObservableObject.cs" />
-    <Compile Include="Core\Pixel.cs" />
+    <Compile Include="Core\CoreHandler.cs" />
+    <Compile Include="Core\Files\SaveFile.cs" />
+    <Compile Include="Core\Keys\Async.cs" />
+    <Compile Include="Core\Skillcheck\PixelData.cs" />
+    <Compile Include="Core\Files\TargetDirectory.cs" />
+    <Compile Include="Core\Keys\GlobalHotkey.cs" />
+    <Compile Include="Core\Keys\HotkeysManager.cs" />
+    <Compile Include="Core\Skillcheck\ImageAlgorithm.cs" />
+    <Compile Include="Core\UI\ObservableObject.cs" />
+    <Compile Include="Core\Skillcheck\ImageSearchUtil.cs" />
     <Compile Include="Core\ReadSaveFile.cs" />
-    <Compile Include="Core\RelayCommand.cs" />
-    <Compile Include="Core\Skillcheckbot.cs" />
+    <Compile Include="Core\UI\RelayCommand.cs" />
+    <Compile Include="Core\Skillcheck\Skillcheckbot.cs" />
     <Compile Include="Core\WriteSaveFile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
