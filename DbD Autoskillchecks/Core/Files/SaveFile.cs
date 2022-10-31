@@ -103,6 +103,29 @@ namespace DbD_Autoskillchecks.Core.Files
 			Properties.Remove((Property)findPropByID);
 		}
 
+		public int ReturnPropertyValueByName(string name)
+		{
+			foreach (var property in Properties)
+			{
+				if (property.PropertyName == name)
+				{
+					return property.Value;
+				}
+			}
+			return 0;
+		}
+		public int ReturnPropertyValueByID(int id)
+		{
+			foreach (var property in Properties)
+			{
+				if (property.ID == id)
+				{
+					return property.Value;
+				}
+			}
+			return 0;
+		}
+
 		public void SaveToFile()
 		{
 			var settings = Path.Combine(targetdirectory.TargetPath, "Settings.txt");
@@ -113,20 +136,17 @@ namespace DbD_Autoskillchecks.Core.Files
 				{
 					File.Delete(settings);
 				}
-				foreach (Property property in Properties)
+
+				using (var sw = new System.IO.StreamWriter(settings))
 				{
-					//Console.WriteLine("{0}" + "\n" + "{1}" + "\n" + "{2}", property.ID, property.PropertyName, property.Value);
-					using (var sw = new System.IO.StreamWriter(settings))
+					foreach (var proper in Properties)
 					{
-						for (var i = 0; i < Properties.Count; i++)
-						{
-							sw.WriteLine(property.ID);
-							sw.WriteLine(property.PropertyName);
-							sw.WriteLine(property.Value);
-						}
+						//Console.WriteLine("{0}" + "\n" + "{1}" + "\n" + "{2}", proper.ID, proper.PropertyName, proper.Value);
+						sw.WriteLine(proper.ID);
+						sw.WriteLine(proper.PropertyName);
+						sw.WriteLine(proper.Value);
 					}
 				}
-
 			}
 			catch (Exception Ex)
 			{
@@ -135,13 +155,13 @@ namespace DbD_Autoskillchecks.Core.Files
 		}
 		public void ReadFromFile()
 		{
-			Console.WriteLine("Reading File");
+			//Console.WriteLine("Reading File");
 			var settings = Path.Combine(targetdirectory.TargetPath, "Settings.txt");
 			Property property = new Property();
 
 			if (File.Exists(settings))
 			{
-				Console.WriteLine("File Found");
+				//Console.WriteLine("File Found");
 				int thirdline = 0;
 				string secondline = "";
 				string[] tempstrings = new string[ElementListCount];
@@ -180,13 +200,11 @@ namespace DbD_Autoskillchecks.Core.Files
 						AddProperty(tempstrings[i], tempints[i]);
 					}
 				}
-				Console.WriteLine("Current List: ");
+				//Console.WriteLine("Current List: ");
 				foreach (Property prop in Properties)
 				{
 					Console.WriteLine("{0}" + "\n" + "{1}" + "\n" + "{2}" + "\n", prop.ID, prop.PropertyName, prop.Value);
 				}
-				//var KeyToValue = PropertyPairs.FirstOrDefault(x => x.Value == property).Key;
-
 			}
 			else
 			{

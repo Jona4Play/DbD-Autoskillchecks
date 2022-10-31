@@ -42,10 +42,10 @@ namespace DbD_Autoskillchecks
 		private void OnButtonSearchPixels(object sender, RoutedEventArgs e)
 		{
 			SaveFile saveFile = new SaveFile();
-			saveFile.AddProperty("yeet", 29);
+			/*saveFile.AddProperty("yeet", 29);
 			saveFile.AddProperty("reeeeee", 569);
-			saveFile.SaveToFile();
-			//saveFile.ReadFromFile();
+			saveFile.SaveToFile();*/
+			saveFile.ReadFromFile();
 			//sc.SkillcheckExecute(true);
 		}
 
