@@ -42,11 +42,10 @@ namespace DbD_Autoskillchecks
 		private void OnButtonSearchPixels(object sender, RoutedEventArgs e)
 		{
 			SaveFile saveFile = new SaveFile();
-			saveFile.AddProperty(280, "MinRemainingPixels");
-			saveFile.AddProperty(232, "Retry");
-			saveFile.AddProperty(280, "DelayFrame");
-			saveFile.AddProperty(280, "DE");
+			saveFile.AddProperty("yeet", 29);
+			saveFile.AddProperty("reeeeee", 569);
 			saveFile.SaveToFile();
+			//saveFile.ReadFromFile();
 			//sc.SkillcheckExecute(true);
 		}
 

@@ -22,10 +22,10 @@ namespace DbD_Autoskillchecks.Core
 		public string GetFileDirectory()
 		{
 			string basedirectory = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName;
-			Console.WriteLine(basedirectory);
+			//Console.WriteLine(basedirectory);
 			targetdirectory = Path.Combine(basedirectory, "Data");
 			CheckPathValidity(targetdirectory);
-			Console.WriteLine(targetdirectory);
+			//Console.WriteLine(targetdirectory);
 			return targetdirectory;
 		}
 
@@ -33,7 +33,7 @@ namespace DbD_Autoskillchecks.Core
 		{
 			if (Directory.Exists(directory))
 			{
-				Console.WriteLine("Folder Exists");
+				//Console.WriteLine("Folder Exists");
 			}
 			else
 			{
