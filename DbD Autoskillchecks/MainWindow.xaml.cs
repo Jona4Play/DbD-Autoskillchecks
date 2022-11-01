@@ -44,9 +44,11 @@ namespace DbD_Autoskillchecks
 			SaveFile saveFile = new SaveFile();
 			/*saveFile.AddProperty("yeet", 29);
 			saveFile.AddProperty("reeeeee", 569);
-			saveFile.SaveToFile();*/
+			saveFile.SaveToFile();
 			saveFile.ReadFromFile();
-			//sc.SkillcheckExecute(true);
+			
+			*/
+			sc.SkillcheckExecute(true);
 		}
 
 		private void CheckBox_CheckedChangedAsync(object sender, RoutedEventArgs e)

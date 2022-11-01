@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace DbD_Autoskillchecks.Core
 {
@@ -68,8 +69,30 @@ namespace DbD_Autoskillchecks.Core
 			{
 				string directory = targetdir.TargetPath;
 				string debugimage = Path.Combine(directory, "debug.bmp");
+				string debugscaledimage = Path.Combine(directory, "debugscaled.bmp");
 				pixel.DetectColorWithUnsafeImage(screenshot, 255, 255, 255, 0);
+
+				float width = 280;
+				float height = 280;
+				var brush = new SolidBrush(Color.Black);
+
+				var image = new Bitmap(screenshot);
+				float scale = Math.Min(width / image.Width, height / image.Height);
+				var bmp = new Bitmap((int)width, (int)height);
+				var graph = Graphics.FromImage(bmp);
+
+				// uncomment for higher quality output
+				//graph.InterpolationMode = InterpolationMode.High;
+				//graph.CompositingQuality = CompositingQuality.HighQuality;
+				//graph.SmoothingMode = SmoothingMode.AntiAlias;
+
+				var scaleWidth = (int)(image.Width * scale);
+				var scaleHeight = (int)(image.Height * scale);
+
+				graph.FillRectangle(brush, new RectangleF(0, 0, width, height));
+				graph.DrawImage(image, ((int)width - scaleWidth) / 2, ((int)height - scaleHeight) / 2, scaleWidth, scaleHeight);
 				screenshot.Save(debugimage, ImageFormat.Bmp);
+				bmp.Save(debugscaledimage, ImageFormat.Bmp);
 				Console.WriteLine("Ran Debug");
 			}
 			//Console.WriteLine("Program now testing Similarities");

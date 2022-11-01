@@ -1,26 +1,18 @@
-﻿using DbD_Autoskillchecks.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
 using Path = System.IO.Path;
 
 namespace DbD_Autoskillchecks.Core.Files
 {
-	enum SaveProperties
+	internal enum SaveProperties
 	{
 		OverlapPixels,
-
 	}
 
 	internal class Property
 	{
-
 		public int PropertyAmount
 		{
 			get
@@ -38,6 +30,7 @@ namespace DbD_Autoskillchecks.Core.Files
 		{
 
 		}
+
 		public Property(int iD, string propertyName, int value)
 		{
 			ID = iD;
@@ -45,6 +38,7 @@ namespace DbD_Autoskillchecks.Core.Files
 			Value = value;
 		}
 	}
+
 	internal class SaveFile
 	{
 		public int ElementListCount
@@ -63,14 +57,11 @@ namespace DbD_Autoskillchecks.Core.Files
 			}
 		}
 
-		TargetDirectory targetdirectory = new TargetDirectory();
+		private TargetDirectory targetdirectory = new TargetDirectory();
 
-
-		List<Property> Properties = new List<Property>
+		private List<Property> Properties = new List<Property>
 		{
-
 		};
-
 
 		public void AddProperty(string name, int value)
 		{
@@ -88,6 +79,7 @@ namespace DbD_Autoskillchecks.Core.Files
 				Console.WriteLine("A Property is already registered under this name");
 			}
 		}
+
 		public void RemovePropertyByName(string name)
 		{
 			var findPropByName = (from prop in Properties
@@ -95,6 +87,7 @@ namespace DbD_Autoskillchecks.Core.Files
 								  select prop);
 			Properties.Remove((Property)findPropByName);
 		}
+
 		public void RemovePropertyByID(int id)
 		{
 			var findPropByID = (from prop in Properties
@@ -114,6 +107,7 @@ namespace DbD_Autoskillchecks.Core.Files
 			}
 			return 0;
 		}
+
 		public int ReturnPropertyValueByID(int id)
 		{
 			foreach (var property in Properties)
@@ -153,6 +147,7 @@ namespace DbD_Autoskillchecks.Core.Files
 				Console.WriteLine(Ex.ToString());
 			}
 		}
+
 		public void ReadFromFile()
 		{
 			//Console.WriteLine("Reading File");
@@ -178,21 +173,21 @@ namespace DbD_Autoskillchecks.Core.Files
 								case 0:
 									r.ReadLine();
 									break;
+
 								case 1:
 									secondline = r.ReadLine();
 									break;
+
 								case 2:
 									thirdline = int.Parse(r.ReadLine());
 									break;
 							}
-
 						}
 						//Console.WriteLine(c);
 						//Console.WriteLine(secondline);
 						//Console.WriteLine(thirdline);
 						tempstrings[c] = secondline;
 						tempints[c] = thirdline;
-
 					}
 					Properties.Clear();
 					for (int i = 0; i < ElementListCount; i++)

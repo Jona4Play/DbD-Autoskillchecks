@@ -15,11 +15,26 @@ namespace DbD_Autoskillchecks.Core
 		{
 			get
 			{
-				return GetFileDirectory();
+				return GetDataDirectory();
 			}
 		}
-
-		public string GetFileDirectory()
+		public string StaticPath
+		{
+			get
+			{
+				return GetStaticDirectory();
+			}
+		}
+		public string GetStaticDirectory()
+		{
+			string basedirectory = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName;
+			//Console.WriteLine(basedirectory);
+			targetdirectory = Path.Combine(basedirectory, "Static");
+			CheckPathValidity(targetdirectory);
+			//Console.WriteLine(targetdirectory);
+			return targetdirectory;
+		}
+		public string GetDataDirectory()
 		{
 			string basedirectory = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName;
 			//Console.WriteLine(basedirectory);

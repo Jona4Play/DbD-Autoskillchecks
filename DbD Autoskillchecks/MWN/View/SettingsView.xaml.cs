@@ -1,4 +1,5 @@
 ﻿using DbD_Autoskillchecks.Core;
+using DbD_Autoskillchecks.Core.Files;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,6 +18,7 @@ namespace DbD_Autoskillchecks.MWN.View
 
 		private void OnInitializeChangeValues()
 		{
+			SaveFile saveFile = new SaveFile();
 			ReadSaveFile rsv = new ReadSaveFile();
 			overlappixels.Value = rsv.OverlapPixels;
 			delayframes.Value = rsv.DelayFrame;
