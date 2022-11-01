@@ -13,6 +13,7 @@
                         <Border.Effect>
                             <DropShadowEffect Color="#FF72FFE5" ShadowDepth="0" />
                         </Border.Effect>
+
                         <TextBlock Foreground="{TemplateBinding BorderBrush}" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>

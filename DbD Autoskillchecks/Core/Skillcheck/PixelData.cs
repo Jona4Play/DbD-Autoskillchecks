@@ -15,10 +15,26 @@ namespace DbD_Autoskillchecks.Core.Skillcheck
 		public int G { get; private set; }
 		public int B { get; private set; }
 
-		public void GetCoords(Bitmap bitmap, double degree, double radius, int halfBitMap)
+
+
+		public void GetCoords(double degree, double radius, int halfBitMap)
 		{
-			X = (int)Math.Round(Math.Cos(degree) * radius + halfBitMap);
-			Y = (int)Math.Round(Math.Cos(degree) * radius + halfBitMap);
+			double rad = DegreeToRadian(degree);
+			X = (int)Math.Round(Math.Cos(rad) * radius + halfBitMap);
+			Y = (int)Math.Round(Math.Cos(rad) * radius + halfBitMap);
+		}
+
+		public void GetPixelData(Bitmap bmp)
+		{
+			var color = bmp.GetPixel(X, Y);
+			R = color.R;
+			G = color.G;
+			B = color.B;
+		}
+
+		private double DegreeToRadian(double degree)
+		{
+			return degree * Math.PI / 180;
 		}
 
 	}

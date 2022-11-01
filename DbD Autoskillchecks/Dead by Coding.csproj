@@ -103,7 +103,8 @@
     </Compile>
     <Compile Include="Core\CoreHandler.cs" />
     <Compile Include="Core\Files\SaveFile.cs" />
-    <Compile Include="Core\Keys\Async.cs" />
+    <Compile Include="Core\Keys\KeyCode.cs" />
+    <Compile Include="Core\Keys\SendKeys.cs" />
     <Compile Include="Core\Skillcheck\PixelData.cs" />
     <Compile Include="Core\Files\TargetDirectory.cs" />
     <Compile Include="Core\Keys\GlobalHotkey.cs" />
@@ -148,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Theme\ModifiedCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\RoundedCorners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,6 +212,9 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
     <Folder Include="MWN\Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="syncwhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

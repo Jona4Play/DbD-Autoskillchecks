@@ -33,5 +33,11 @@ namespace DbD_Autoskillchecks.MWN.View
 			_image.EndInit();
 			bmpimage.Source = _image;
 		}
+
+		private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+			UpdateImage();
+
+		}
 	}
 }

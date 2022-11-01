@@ -6,10 +6,6 @@ using Path = System.IO.Path;
 
 namespace DbD_Autoskillchecks.Core.Files
 {
-	internal enum SaveProperties
-	{
-		OverlapPixels,
-	}
 
 	internal class Property
 	{

@@ -27,8 +27,26 @@
 			</Border.Clip>
 			<Image Name="bmpimage" Stretch="Fill" />
 		</Border>
-        <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="50" Height="50" Style="{StaticResource ButtonStyle}">
+        
 
-        </Button>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+
+
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Style="{StaticResource ButtonStyle}"  Content="Load" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="15,0,0,0"  VerticalAlignment="Center"  Width="52" Height="52" Click="Button_Click"/>
+            <StackPanel Orientation="Horizontal">
+                
+                
+                <Button Style="{StaticResource ButtonStyle}"  Content="Run Image&#x0a; Algorithm" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="15,0,0,0"  VerticalAlignment="Center"  Width="124" Height="52" Click="Button_Click"/>
+                <CheckBox Style="{StaticResource ModifiedCheckBox}" Width="130" Margin="40,0,0,0" Height="52" Content="Debug Hotkey"></CheckBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

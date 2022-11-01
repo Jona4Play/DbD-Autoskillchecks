@@ -2,9 +2,9 @@
 
 namespace DbD_Autoskillchecks.Core
 {
-	internal class Async
+	internal class KeyCodes
 	{
-		public static class Module1
+		public static class List
 		{
 			[DllImport("user32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
 			public static extern long GetAsyncKeyState(long vKey);

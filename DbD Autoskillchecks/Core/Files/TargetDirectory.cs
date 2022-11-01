@@ -27,9 +27,9 @@ namespace DbD_Autoskillchecks.Core
 		}
 		public string GetStaticDirectory()
 		{
-			string basedirectory = System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName;
+
 			//Console.WriteLine(basedirectory);
-			targetdirectory = Path.Combine(basedirectory, "Static");
+			targetdirectory = Path.Combine(GetDataDirectory(), "Static");
 			CheckPathValidity(targetdirectory);
 			//Console.WriteLine(targetdirectory);
 			return targetdirectory;
