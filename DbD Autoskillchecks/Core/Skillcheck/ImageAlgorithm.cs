@@ -1,4 +1,5 @@
-﻿using DbD_Autoskillchecks.Core.Skillcheck;
+﻿using DbD_Autoskillchecks.Core.Keys;
+using DbD_Autoskillchecks.Core.Skillcheck;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,6 +13,8 @@ namespace DbD_Autoskillchecks.Core
 	{
 		PixelData pixelData = new PixelData();
 
+		public int PositionRedPartX { get; private set; }
+		public int PositionRedPartY { get; private set; }
 		public int PositionWhiteZoneX { get; private set; }
 		public int PositionWhiteZoneY { get; private set; }
 		private bool FindRedSpot(double degree, Bitmap bmp)
@@ -64,7 +67,9 @@ namespace DbD_Autoskillchecks.Core
 			{
 				if (RedPart(degree, bmp))
 				{
-
+					Console.WriteLine("Found Overlap" + "\n" + "Pressing Button");
+					SendKeys send = new SendKeys();
+					send.SendKeysToDbD(0x20);
 				}
 			}
 		}
