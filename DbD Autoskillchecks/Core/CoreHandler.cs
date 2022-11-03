@@ -1,4 +1,5 @@
 ﻿using DbD_Autoskillchecks.Core.Files;
+using DbD_Autoskillchecks.Core.Skillcheck;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,6 +12,8 @@ namespace DbD_Autoskillchecks.Core
 	class CoreHandler
 	{
 		ImageAlgorithm ia = new ImageAlgorithm();
+		ImageSearchUtil isu = new ImageSearchUtil();
+
 		public int Example
 		{
 			get
@@ -21,17 +24,28 @@ namespace DbD_Autoskillchecks.Core
 
 		public void CoreHandlerMain()
 		{
+			PropertyInit();
+			RunImageAlgorithm(isu.GetBitmapFromScreen());
+		}
 
+		public void DebugRoutine()
+		{
+			PropertyInit();
+			var path = "C:\\Users\\jona4\\Desktop\\test.png";
+			RunImageAlgorithm(isu.GetBitmapFromFile(path));
 		}
 
 		public void PropertyInit()
 		{
 			SaveFile save = new SaveFile();
-			save.AddProperty("Overlap", 200);
+			save.AddProperty("GraceZone", 5);
+			save.AddProperty("SearchCircle", 600);
+			save.AddProperty("SkillcheckRadius", 65);
+			save.SaveToFile();
 		}
 		public void RunImageAlgorithm(Bitmap bmp)
 		{
-			ia.StartRoutine(bmp);
+			ia.SkillCheckRoutine(bmp);
 		}
 	}
 }

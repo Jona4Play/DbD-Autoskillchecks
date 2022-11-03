@@ -39,6 +39,12 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KGySoft.CoreLibraries, Version=6.0.2.0, Culture=neutral, PublicKeyToken=b45eba277439ddfe, processorArchitecture=MSIL">
+      <HintPath>..\packages\KGySoft.CoreLibraries.6.0.2\lib\net472\KGySoft.CoreLibraries.dll</HintPath>
+    </Reference>
+    <Reference Include="KGySoft.Drawing, Version=6.3.2.0, Culture=neutral, PublicKeyToken=b45eba277439ddfe, processorArchitecture=MSIL">
+      <HintPath>..\packages\KGySoft.Drawing.6.3.2\lib\net46\KGySoft.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -114,7 +120,7 @@
     <Compile Include="Core\Skillcheck\ImageSearchUtil.cs" />
     <Compile Include="Core\ReadSaveFile.cs" />
     <Compile Include="Core\UI\RelayCommand.cs" />
-    <Compile Include="Core\Skillcheck\Skillcheckbot.cs" />
+    <Compile Include="Core\Skillcheck\Deprecated-Skillcheckbot.cs" />
     <Compile Include="Core\WriteSaveFile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -5,10 +5,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.RightsManagement;
 
 namespace DbD_Autoskillchecks.Core
 {
-	internal class Pixel
+	class ImageSearchUtil
 	{
 		private int LastFrameWhitePixel;
 
@@ -120,5 +121,22 @@ namespace DbD_Autoskillchecks.Core
 			image.UnlockBits(imageData);
 		}
 
+		public Bitmap GetBitmapFromScreen()
+		{
+			int screendimX = 1920;
+			int screendimY = 1080;
+			int bitmapdimension = 140;
+			Bitmap screenshot = new Bitmap(bitmapdimension, bitmapdimension, PixelFormat.Format24bppRgb);
+			var gfxScreenshot = Graphics.FromImage(screenshot);
+			gfxScreenshot.CopyFromScreen(screendimX / 2 - bitmapdimension / 2, screendimY / 2 - bitmapdimension / 2, 0, 0, new Size(bitmapdimension, bitmapdimension), CopyPixelOperation.SourceCopy);
+			return screenshot;
+		}
+		public Bitmap GetBitmapFromFile(string path)
+		{
+			var bmp = new Bitmap(path);
+			return bmp;
+		}
+
 	}
+
 }

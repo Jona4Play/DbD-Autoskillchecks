@@ -17,7 +17,7 @@ namespace DbD_Autoskillchecks
 		private bool shouldcheck = false;
 
 
-		private Skillcheckbot sc = new Skillcheckbot();
+		//private Skillcheckbot sc = new Skillcheckbot();
 		private HomeView homeView = new HomeView();
 
 		public MainWindow()
@@ -41,14 +41,7 @@ namespace DbD_Autoskillchecks
 
 		private void OnButtonSearchPixels(object sender, RoutedEventArgs e)
 		{
-			SaveFile saveFile = new SaveFile();
-			/*saveFile.AddProperty("yeet", 29);
-			saveFile.AddProperty("reeeeee", 569);
-			saveFile.SaveToFile();
-			saveFile.ReadFromFile();
-			
-			*/
-			sc.SkillcheckExecute(true);
+			//sc.SkillcheckExecute(true);
 		}
 
 		private void CheckBox_CheckedChangedAsync(object sender, RoutedEventArgs e)
@@ -57,7 +50,7 @@ namespace DbD_Autoskillchecks
 
 			if ((bool)runai.IsChecked)
 			{
-				Task.Run(() => sc.SkillcheckExecute(false));
+				//Task.Run(() => sc.SkillcheckExecute(false));
 			}
 		}
 
@@ -83,7 +76,7 @@ namespace DbD_Autoskillchecks
 		{
 			while (shouldexecute)
 			{
-				sc.SkillcheckExecute(false);
+				//sc.SkillcheckExecute(false);
 				Console.WriteLine("Executing Skillchecks");
 			}
 		}
@@ -107,7 +100,7 @@ namespace DbD_Autoskillchecks
 				if (IsKeyPushedDown(Keys.C))
 				{
 					Console.WriteLine("Found C Press");
-					sc.SkillcheckExecute(true);
+					//sc.SkillcheckExecute(true);
 				}
 			}
 		}

@@ -45,7 +45,7 @@
                 
                 
                 <Button Style="{StaticResource ButtonStyle}"  Content="Run Image&#x0a; Algorithm" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="15,0,0,0"  VerticalAlignment="Center"  Width="124" Height="52" Click="Button_Click"/>
-                <CheckBox Style="{StaticResource ModifiedCheckBox}" Width="130" Margin="40,0,0,0" Height="52" Content="Debug Hotkey"></CheckBox>
+                <CheckBox Style="{StaticResource ModifiedCheckBox}" Width="130" Margin="40,0,0,0" Height="52" Content="Debug Routine" Checked="CheckBox_Checked"></CheckBox>
             </StackPanel>
         </Grid>
     </Grid>

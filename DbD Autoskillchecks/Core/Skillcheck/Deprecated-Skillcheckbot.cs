@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
-
+/*
 namespace DbD_Autoskillchecks.Core
 {
 	internal class Skillcheckbot : IDisposable
@@ -18,7 +18,7 @@ namespace DbD_Autoskillchecks.Core
 		private int outerradius = 70;
 		private int centerx = Screen.PrimaryScreen.Bounds.Width / 2;
 		private int centery = Screen.PrimaryScreen.Bounds.Height / 2;
-		private Pixel pixel = new Pixel();
+		private ImageSearchUtil pixel = new ImageSearchUtil();
 		private TargetDirectory targetdir = new TargetDirectory();
 
 		[DllImport("user32.dll", SetLastError = true)]
@@ -29,34 +29,36 @@ namespace DbD_Autoskillchecks.Core
 		public const int VK_SPACE = 0x20; //Space Key Code
 		public void SkillcheckExecute(bool SaveImage)
 		{
-			/* Deprecated
-            Console.WriteLine("Debug Version");
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            Bitmap screenshot = new Bitmap(outerradius * 2, outerradius * 2, PixelFormat.Format24bppRgb);
-            var gfxScreenshot = Graphics.FromImage(screenshot);
-            gfxScreenshot.CopyFromScreen(centerx - outerradius, centery - outerradius, 0, 0, new Size(140, 140), CopyPixelOperation.SourceCopy);
-            //Bitmap compBmp = (Bitmap)Bitmap.FromFile("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\comp.bmp");
-            DetectColorWithUnsafe(screenshot, 255, 255, 255, 0);
-            screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
-            Console.WriteLine("Program now testing Similarities");
+			Deprecated
 
-            if (CompareMemCmp(compBmp, screenshot))
-            {
-                pressSpace();
-                Console.WriteLine("Matching");
-            }
-            else
-            {
-                Console.WriteLine("NotMatching");
-            }
+			Console.WriteLine("Debug Version");
+			var watch = System.Diagnostics.Stopwatch.StartNew();
+			Bitmap screenshot = new Bitmap(outerradius * 2, outerradius * 2, PixelFormat.Format24bppRgb);
+			var gfxScreenshot = Graphics.FromImage(screenshot);
+			gfxScreenshot.CopyFromScreen(centerx - outerradius, centery - outerradius, 0, 0, new Size(140, 140), CopyPixelOperation.SourceCopy);
+			//Bitmap compBmp = (Bitmap)Bitmap.FromFile("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\comp.bmp");
+			DetectColorWithUnsafe(screenshot, 255, 255, 255, 0);
+			screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
+			Console.WriteLine("Program now testing Similarities");
 
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            Console.WriteLine("Time Elapsed " + elapsedMs);
+			if (CompareMemCmp(compBmp, screenshot))
+			{
+				pressSpace();
+				Console.WriteLine("Matching");
+			}
+			else
+			{
+				Console.WriteLine("NotMatching");
+			}
 
-            Debug Section used for Development
-            screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
-            */
+			watch.Stop();
+			var elapsedMs = watch.ElapsedMilliseconds;
+			Console.WriteLine("Time Elapsed " + elapsedMs);
+
+			Debug Section used for Development
+
+			screenshot.Save("C:\\Users\\jona4\\Desktop\\ImageAlgorithm\\debug.bmp", ImageFormat.Bmp);
+
 			//Console.WriteLine("Start Cyle");
 
 			var watch = Stopwatch.StartNew();
@@ -131,5 +133,7 @@ namespace DbD_Autoskillchecks.Core
 		{
 			GC.SuppressFinalize(this);
 		}
+
 	}
 }
+*/

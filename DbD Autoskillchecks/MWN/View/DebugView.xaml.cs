@@ -13,6 +13,7 @@ namespace DbD_Autoskillchecks.MWN.View
 	/// </summary>
 	public partial class DebugView : UserControl
 	{
+		private CoreHandler handler = new CoreHandler();
 		private TargetDirectory targetDirectory = new TargetDirectory();
 
 		public DebugView()
@@ -37,7 +38,11 @@ namespace DbD_Autoskillchecks.MWN.View
 		private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
 			UpdateImage();
+		}
 
+		private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
+		{
+			handler.DebugRoutine();
 		}
 	}
 }

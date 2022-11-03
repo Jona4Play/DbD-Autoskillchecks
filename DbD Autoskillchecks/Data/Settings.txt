@@ -1,5 +1,9 @@
-280
-0
-0
-200
-130
+1
+GraceZone
+5
+2
+SearchCircle
+600
+3
+SkillcheckRadius
+65
