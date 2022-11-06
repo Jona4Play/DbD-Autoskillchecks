@@ -13,35 +13,30 @@ using System.Windows.Media;
 
 namespace DbD_Autoskillchecks.Core
 {
-	class CoreHandler
-	{
-		TargetDirectory targetDirectory = new TargetDirectory();
-		public void CoreHandlerMain()
-		{
-			CoreHandlerGlobal.PropertyInit();
-			
-		}
-
-		
-		
-		
-	}
-	static class CoreHandlerGlobal
+	
+	static class CoreHandler
 	{
 		static public void DebugRoutine()
 		{
+			TargetDirectory target = new TargetDirectory();
 			var watch = Stopwatch.StartNew();
-			PropertyInit();
+			//PropertyInit();
+			//var path = Path.Combine(target.TargetPath,"testreal.png");
+			//var destpath = Path.Combine(target.TargetPath,"cropreal.png");
+			//var img = ImageSearchUtil.Crop(path, 140, 140, 1920 / 2 - 70, 1080 / 2 - 70);
+			//img.Save(destpath,ImageFormat.Bmp);
+			RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen());
 			//RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen());
-			//RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen());
-			RunIADebug(ImageSearchUtil.GetBitmapFromScreen());
+			//RunIADebug(ImageSearchUtil.GetBitmapFromScreen());
 			watch.Stop();
+			Console.WriteLine(watch.ElapsedMilliseconds);
 
 		}
-		public static void RunImageAlgorithm(Bitmap bmp)
+		public static void RunImageAlgorithm(Bitmap bmp, bool debug = false)
 		{
+			Console.WriteLine("Run IA");
 			ImageAlgorithm ia = new ImageAlgorithm();
-			ia.SkillCheckRoutine(bmp);
+			ia.SkillCheckRoutine(bmp, debug);
 		}
 		private static void RunIADebug(Bitmap bmp)
 		{
@@ -53,6 +48,7 @@ namespace DbD_Autoskillchecks.Core
 			SaveFile.AddProperty("GraceZone", 5);
 			SaveFile.AddProperty("SearchCircle", 600);
 			SaveFile.AddProperty("SkillcheckRadius", 65);
+			SaveFile.AddProperty("DelayInMS", 12);
 			SaveFile.SaveToFile();
 		}
 		static public IntPtr GetGameID()

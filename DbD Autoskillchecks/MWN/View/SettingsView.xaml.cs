@@ -18,18 +18,20 @@ namespace DbD_Autoskillchecks.MWN.View
 
 		private void OnInitializeChangeValues()
 		{
-			ReadSaveFile rsv = new ReadSaveFile();
-			overlappixels.Value = rsv.OverlapPixels;
-			delayframes.Value = rsv.DelayFrame;
-			tolerance.Value = rsv.Tolerance;
-			minremainingpixels.Value = rsv.MinRemainingPixels;
-			MoonwalkDelay.Value = rsv.MoonwalkDelay;
+			gracepixels.Value = SaveFile.ReturnPropertyValueByName("GraceZone");
+			searchcircle.Value = SaveFile.ReturnPropertyValueByName("SearchCircle");
+			delayms.Value = SaveFile.ReturnPropertyValueByName("DelayInMS");
+			skillcheckradius.Value = SaveFile.ReturnPropertyValueByName("SkillcheckRadius");
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			WriteSaveFile wsf = new WriteSaveFile();
-			wsf.SaveToFile((int)overlappixels.Value, (int)tolerance.Value, (int)delayframes.Value, (int)minremainingpixels.Value, (int)MoonwalkDelay.Value);
+			SaveFile.ClearList();
+			SaveFile.AddProperty("GraceZone", (int)gracepixels.Value);
+			SaveFile.AddProperty("SearchCircle", (int)searchcircle.Value);
+			SaveFile.AddProperty("DelayInMS", (int)delayms.Value);
+			SaveFile.AddProperty("SkillcheckRadius", (int)skillcheckradius.Value);
+			SaveFile.SaveToFile();
 		}
 	}
 }

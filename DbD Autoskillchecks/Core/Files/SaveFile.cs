@@ -138,7 +138,10 @@ namespace DbD_Autoskillchecks.Core.Files
 				Console.WriteLine(Ex.ToString());
 			}
 		}
-
+		public static void ClearList()
+		{
+			Properties.Clear();
+		}
 		public static void ReadFromFile()
 		{
 			Console.WriteLine("Reading File");

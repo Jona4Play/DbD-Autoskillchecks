@@ -2,6 +2,7 @@
 using DbD_Autoskillchecks.Core.Files;
 using DbD_Autoskillchecks.MWN.View;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,7 @@ namespace DbD_Autoskillchecks
 		public MainWindow()
 		{
 			InitializeComponent();
+			CoreHandler.PropertyInit();
 		}
 
 
@@ -41,7 +43,7 @@ namespace DbD_Autoskillchecks
 
 		private void OnButtonSearchPixels(object sender, RoutedEventArgs e)
 		{
-			//sc.SkillcheckExecute(true);
+			CoreHandler.RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen(), true);
 		}
 
 		private void CheckBox_CheckedChangedAsync(object sender, RoutedEventArgs e)
@@ -76,8 +78,11 @@ namespace DbD_Autoskillchecks
 		{
 			while (shouldexecute)
 			{
-				//sc.SkillcheckExecute(false);
-				Console.WriteLine("Executing Skillchecks");
+				var watch = Stopwatch.StartNew();
+				CoreHandler.RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen());
+				watch.Stop();
+				Console.WriteLine(watch.ElapsedMilliseconds);
+				//Console.WriteLine("Executing Skillchecks");
 			}
 		}
 

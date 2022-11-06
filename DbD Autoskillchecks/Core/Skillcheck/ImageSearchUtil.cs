@@ -136,7 +136,7 @@ namespace DbD_Autoskillchecks.Core
 			var pathbmp = Path.Combine(targetDirectory.TargetPath, "debugcropped.bmp");
 			var bmp = Crop(path, 140, 140, 1920 / 2 - 70, 1080 / 2 - 70);
 		}
-		static	public Bitmap Crop(string img, int width, int height, int x, int y)
+		static public Bitmap Crop(string img, int width, int height, int x, int y)
 		{
 			try
 			{

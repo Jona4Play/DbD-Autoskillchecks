@@ -28,8 +28,9 @@ namespace DbD_Autoskillchecks.Core
 			var scr = SaveFile.ReturnPropertyValueByName("SkillcheckRadius");
 			pixelData.GetCoords(degree, scr, bmp.Size.Width / 2, bmp.Size.Height / 2);
 			pixelData.GetPixelDataByCoordinate(bmp,pixelData.X, pixelData.Y);
-			if (pixelData.R >= 205 && pixelData.G >= 0 && pixelData.B >= 0)
+			if (pixelData.R >= 205 && pixelData.G == 0 && pixelData.B == 0)
 			{
+				Console.WriteLine("Found Red Spot at: X = {0}; Y = {1}; With These Values: R = {2}; G = {3}; B = {4}", pixelData.X, pixelData.Y, pixelData.R, pixelData.G, pixelData.B);
 				PositionRedPartX = pixelData.X;
 				PositionRedPartY = pixelData.Y;
 				return true;
@@ -52,13 +53,13 @@ namespace DbD_Autoskillchecks.Core
 				PositionWhiteZoneY = pixelData.Y;
 				return true;
 			}
-			
 			pixelData.Dispose();
 			return false;
 		}
 		private bool RedPart(double degree, Bitmap bmp)
 		{
 			var sc = SaveFile.ReturnPropertyValueByName("SearchCircle");
+			//Console.WriteLine("Looking for RedPart");
 			for (int i = 0; i < sc; i++)
 			{
 				if (FindRedSpot(degree, bmp))
@@ -72,6 +73,7 @@ namespace DbD_Autoskillchecks.Core
 		private bool WhitePart(double degree, Bitmap bmp)
 		{
 			var sc = SaveFile.ReturnPropertyValueByName("SearchCircle");
+			//Console.WriteLine("Looking for WhitePart");
 			//Console.WriteLine("Search Circle: " + sc);
 			for (int i = 0; i < sc; i++)
 			{
@@ -84,9 +86,10 @@ namespace DbD_Autoskillchecks.Core
 			return false;
 		}
 
-		public void SkillCheckRoutine(Bitmap bmp)
+		public void SkillCheckRoutine(Bitmap bmp, bool debug = false)
 		{
 			double degree = -90;
+			//var watch = Stopwatch.StartNew();
 			if (WhitePart(degree, bmp))
 			{
 				
@@ -100,11 +103,20 @@ namespace DbD_Autoskillchecks.Core
 					{
 						Console.WriteLine("Found Overlap" + "\n" + "Pressing Button");
 						SendKeys send = new SendKeys();
+						Task.Delay(SaveFile.ReturnPropertyValueByName("DelayInMS")).Wait();
 						send.SendKeysToDbD(0x20);
 					}
 				}
 			}
+			if (debug)
+			{
+				TargetDirectory target = new TargetDirectory();
+				var w = Path.Combine(target.TargetPath, "debug.bmp");
+				bmp.Save(w, ImageFormat.Bmp);
+			}
 			bmp.Dispose();
+			//watch.Stop();
+			//Console.WriteLine(watch.ElapsedMilliseconds);
 		}
 		private Bitmap DrawDebug(Bitmap bmp, double degree)
 		{

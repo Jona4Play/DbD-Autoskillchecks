@@ -118,10 +118,10 @@
     <Compile Include="Core\Skillcheck\ImageAlgorithm.cs" />
     <Compile Include="Core\UI\ObservableObject.cs" />
     <Compile Include="Core\Skillcheck\ImageSearchUtil.cs" />
-    <Compile Include="Core\ReadSaveFile.cs" />
+    <Compile Include="Core\Deprecated\ReadSaveFile.cs" />
     <Compile Include="Core\UI\RelayCommand.cs" />
-    <Compile Include="Core\Skillcheck\Deprecated-Skillcheckbot.cs" />
-    <Compile Include="Core\WriteSaveFile.cs" />
+    <Compile Include="Core\Deprecated\Deprecated-Skillcheckbot.cs" />
+    <Compile Include="Core\Deprecated\WriteSaveFile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

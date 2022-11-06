@@ -7,3 +7,6 @@ SearchCircle
 SkillcheckRadius
 3
 65
+DelayInMS
+4
+12
