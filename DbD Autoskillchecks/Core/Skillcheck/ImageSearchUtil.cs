@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.RightsManagement;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace DbD_Autoskillchecks.Core
 {
-	class ImageSearchUtil
+	static class ImageSearchUtil
 	{
-		private int LastFrameWhitePixel;
-
-		public int LastFrameWhitePixels
-		{
-			get { return LastFrameWhitePixel; }
-			set { LastFrameWhitePixel = value; }
-		}
-
-		public int[] GetCoords(double rad, int radius, int bmpHalfSize)
+		static public int[] GetCoords(double rad, int radius, int bmpHalfSize)
 		{
 			int x = (int)Math.Round(Math.Cos(rad) * radius + bmpHalfSize);
 			int y = (int)Math.Round(Math.Sin(rad) * radius + bmpHalfSize);
@@ -27,7 +18,7 @@ namespace DbD_Autoskillchecks.Core
 			return ints;
 		}
 
-		public unsafe int DetectColorWithUnsafe(Bitmap image, byte searchedR, byte searchedG, int searchedB, int tolerance)
+		static public unsafe int DetectColorWithUnsafe(Bitmap image, byte searchedR, byte searchedG, int searchedB, int tolerance)
 		{
 			BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
 			int bytesPerPixel = 3;
@@ -79,7 +70,8 @@ namespace DbD_Autoskillchecks.Core
 			image.UnlockBits(imageData);
 			return WhitePixelCount;
 		}
-		public unsafe void DetectColorWithUnsafeImage(Bitmap image, byte searchedR, byte searchedG, int searchedB, int tolerance)
+
+		static public unsafe void DetectColorWithUnsafeImage(Bitmap image, byte searchedR, byte searchedG, int searchedB, int tolerance)
 		{
 			BitmapData imageData = image.LockBits(new Rectangle(0, 0, image.Width,
 			  image.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
@@ -121,7 +113,7 @@ namespace DbD_Autoskillchecks.Core
 			image.UnlockBits(imageData);
 		}
 
-		public Bitmap GetBitmapFromScreen()
+		static public Bitmap GetBitmapFromScreen()
 		{
 			int screendimX = 1920;
 			int screendimY = 1080;
@@ -131,12 +123,43 @@ namespace DbD_Autoskillchecks.Core
 			gfxScreenshot.CopyFromScreen(screendimX / 2 - bitmapdimension / 2, screendimY / 2 - bitmapdimension / 2, 0, 0, new Size(bitmapdimension, bitmapdimension), CopyPixelOperation.SourceCopy);
 			return screenshot;
 		}
-		public Bitmap GetBitmapFromFile(string path)
+
+		static public Bitmap GetBitmapFromFile(string path)
 		{
 			var bmp = new Bitmap(path);
 			return bmp;
 		}
 
-	}
+		static public void GetCroppedImageFromFile(string path)
+		{
+			TargetDirectory targetDirectory = new TargetDirectory();
+			var pathbmp = Path.Combine(targetDirectory.TargetPath, "debugcropped.bmp");
+			var bmp = Crop(path, 140, 140, 1920 / 2 - 70, 1080 / 2 - 70);
+		}
+		static	public Bitmap Crop(string img, int width, int height, int x, int y)
+		{
+			try
+			{
+				Image image = Image.FromFile(img);
+				Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+				bmp.SetResolution(80, 60);
 
+				Graphics gfx = Graphics.FromImage(bmp);
+				gfx.SmoothingMode = SmoothingMode.AntiAlias;
+				gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				gfx.PixelOffsetMode = PixelOffsetMode.HighQuality;
+				gfx.DrawImage(image, new Rectangle(0, 0, width, height), x, y, width, height, GraphicsUnit.Pixel);
+				// Dispose to free up resources
+				image.Dispose();
+				gfx.Dispose();
+
+				return bmp;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return null;
+			}
+		}
+	}
 }

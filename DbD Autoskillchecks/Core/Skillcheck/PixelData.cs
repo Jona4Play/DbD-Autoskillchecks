@@ -26,20 +26,25 @@ namespace DbD_Autoskillchecks.Core.Skillcheck
 
 		public void GetCoords(double degree, double radius, int dimensionXhalf, int dimensionYhalf)
 		{
+			Console.WriteLine("Called Get Coords");
 			double rad = DegreeToRadian(degree);
 			X = (int)Math.Round(Math.Cos(rad) * radius + dimensionXhalf);
 			Y = (int)Math.Round(Math.Sin(rad) * radius + dimensionYhalf);
-			Console.WriteLine("= ({0}, {1})", X, Y);
+			Console.WriteLine("Coords at {0} degrees: X = {1} Y = {2}",degree,X,Y);
 		}
 
 		public void GetPixelDataByCoordinate(Bitmap bmp, int x, int y)
 		{
+			Console.WriteLine("Called Get PixelData");
 			var color = bmp.GetPixel(x, y);
 			R = color.R;
 			G = color.G;
 			B = color.B;
 		}
-
+		public void Dispose()
+		{
+			GC.SuppressFinalize(this);
+		}
 		private double DegreeToRadian(double degree)
 		{
 			return degree * Math.PI / 180;

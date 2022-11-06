@@ -18,7 +18,6 @@ namespace DbD_Autoskillchecks.MWN.View
 
 		private void OnInitializeChangeValues()
 		{
-			SaveFile saveFile = new SaveFile();
 			ReadSaveFile rsv = new ReadSaveFile();
 			overlappixels.Value = rsv.OverlapPixels;
 			delayframes.Value = rsv.DelayFrame;

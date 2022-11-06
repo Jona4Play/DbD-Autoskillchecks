@@ -2,50 +2,73 @@
 using DbD_Autoskillchecks.Core.Skillcheck;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace DbD_Autoskillchecks.Core
 {
 	class CoreHandler
 	{
-		ImageAlgorithm ia = new ImageAlgorithm();
-		ImageSearchUtil isu = new ImageSearchUtil();
-
-		public int Example
-		{
-			get
-			{
-				return 0;
-			}
-		}
-
+		TargetDirectory targetDirectory = new TargetDirectory();
 		public void CoreHandlerMain()
 		{
-			PropertyInit();
-			RunImageAlgorithm(isu.GetBitmapFromScreen());
+			CoreHandlerGlobal.PropertyInit();
+			
 		}
 
-		public void DebugRoutine()
+		
+		
+		
+	}
+	static class CoreHandlerGlobal
+	{
+		static public void DebugRoutine()
 		{
+			var watch = Stopwatch.StartNew();
 			PropertyInit();
-			var path = "C:\\Users\\jona4\\Desktop\\test.png";
-			RunImageAlgorithm(isu.GetBitmapFromFile(path));
-		}
+			//RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen());
+			//RunImageAlgorithm(ImageSearchUtil.GetBitmapFromScreen());
+			RunIADebug(ImageSearchUtil.GetBitmapFromScreen());
+			watch.Stop();
 
-		public void PropertyInit()
-		{
-			SaveFile save = new SaveFile();
-			save.AddProperty("GraceZone", 5);
-			save.AddProperty("SearchCircle", 600);
-			save.AddProperty("SkillcheckRadius", 65);
-			save.SaveToFile();
 		}
-		public void RunImageAlgorithm(Bitmap bmp)
+		public static void RunImageAlgorithm(Bitmap bmp)
 		{
+			ImageAlgorithm ia = new ImageAlgorithm();
 			ia.SkillCheckRoutine(bmp);
+		}
+		private static void RunIADebug(Bitmap bmp)
+		{
+			ImageAlgorithm ia = new ImageAlgorithm();
+			ia.DebugStart(bmp);
+		}
+		static public void PropertyInit()
+		{
+			SaveFile.AddProperty("GraceZone", 5);
+			SaveFile.AddProperty("SearchCircle", 600);
+			SaveFile.AddProperty("SkillcheckRadius", 65);
+			SaveFile.SaveToFile();
+		}
+		static public IntPtr GetGameID()
+		{
+			var processID = 0;
+			Process[] process = Process.GetProcessesByName("DeadByDaylight-Win64-Shipping");
+			if (process.Length == 1)
+			{
+				foreach (var proc in process)
+				{
+					processID = proc.Id;
+				}
+			}
+			IntPtr MainHandle = Process.GetProcessById(processID).MainWindowHandle;
+			return MainHandle;
+
 		}
 	}
 }

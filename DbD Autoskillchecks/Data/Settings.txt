@@ -1,9 +1,9 @@
-1
 GraceZone
+1
 5
-2
 SearchCircle
+2
 600
-3
 SkillcheckRadius
+3
 65

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using Path = System.IO.Path;
 
 namespace DbD_Autoskillchecks.Core.Files
 {
-
-	internal class Property
+	class Property
 	{
 		public int PropertyAmount
 		{
@@ -35,31 +35,22 @@ namespace DbD_Autoskillchecks.Core.Files
 		}
 	}
 
-	internal class SaveFile
+	static class SaveFile
 	{
-		public int ElementListCount
-		{
-			get
-			{
-				int counter = 0;
-				var settings = Path.Combine(targetdirectory.TargetPath, "Settings.txt");
-				using (StreamReader r = new StreamReader(settings))
-				{
-					int i = 0;
-					while (r.ReadLine() != null) { i++; counter++; }
-				}
+		private static int ElementListCount = 0;
+		
 
-				return counter / 3;
-			}
-		}
 
-		private TargetDirectory targetdirectory = new TargetDirectory();
+		private static TargetDirectory targetdirectory = new TargetDirectory();
 
-		private List<Property> Properties = new List<Property>
+		private static List<Property> Properties = new List<Property>
 		{
 		};
-
-		public void AddProperty(string name, int value)
+		public static void GetElementCount()
+		{
+			ElementListCount = typeof(Property).GetProperties().Count();
+		}
+		public static void AddProperty(string name, int value)
 		{
 			var findValueByName = (from prop in Properties
 								   where prop.PropertyName == name
@@ -76,7 +67,7 @@ namespace DbD_Autoskillchecks.Core.Files
 			}
 		}
 
-		public void RemovePropertyByName(string name)
+		public static void RemovePropertyByName(string name)
 		{
 			var findPropByName = (from prop in Properties
 								  where prop.PropertyName == name
@@ -84,7 +75,7 @@ namespace DbD_Autoskillchecks.Core.Files
 			Properties.Remove((Property)findPropByName);
 		}
 
-		public void RemovePropertyByID(int id)
+		public static void RemovePropertyByID(int id)
 		{
 			var findPropByID = (from prop in Properties
 								where prop.ID == id
@@ -92,19 +83,21 @@ namespace DbD_Autoskillchecks.Core.Files
 			Properties.Remove((Property)findPropByID);
 		}
 
-		public int ReturnPropertyValueByName(string name)
+		public static int ReturnPropertyValueByName(string name)
 		{
 			foreach (var property in Properties)
 			{
-				if (property.PropertyName == name)
+				//Console.WriteLine("Called for Name comparison");
+				if (property.PropertyName.ToLower() == name.ToLower())
 				{
+					//Console.WriteLine("Found Match");
 					return property.Value;
 				}
 			}
 			return 0;
 		}
 
-		public int ReturnPropertyValueByID(int id)
+		public static int ReturnPropertyValueByID(int id)
 		{
 			foreach (var property in Properties)
 			{
@@ -116,11 +109,12 @@ namespace DbD_Autoskillchecks.Core.Files
 			return 0;
 		}
 
-		public void SaveToFile()
+		public static void SaveToFile()
 		{
 			var settings = Path.Combine(targetdirectory.TargetPath, "Settings.txt");
 			try
 			{
+				//Console.WriteLine(settings);
 				// Check if file already exists. If yes, delete it.
 				if (File.Exists(settings))
 				{
@@ -131,9 +125,10 @@ namespace DbD_Autoskillchecks.Core.Files
 				{
 					foreach (var proper in Properties)
 					{
-						//Console.WriteLine("{0}" + "\n" + "{1}" + "\n" + "{2}", proper.ID, proper.PropertyName, proper.Value);
-						sw.WriteLine(proper.ID);
+
+						Console.WriteLine("{0}" + "\n" + "{1}" + "\n" + "{2}", proper.PropertyName, proper.ID, proper.Value);
 						sw.WriteLine(proper.PropertyName);
+						sw.WriteLine(proper.ID);
 						sw.WriteLine(proper.Value);
 					}
 				}
@@ -144,17 +139,19 @@ namespace DbD_Autoskillchecks.Core.Files
 			}
 		}
 
-		public void ReadFromFile()
+		public static void ReadFromFile()
 		{
-			//Console.WriteLine("Reading File");
+			Console.WriteLine("Reading File");
 			var settings = Path.Combine(targetdirectory.TargetPath, "Settings.txt");
 			Property property = new Property();
 
+			Properties.Clear();
+			
 			if (File.Exists(settings))
 			{
-				//Console.WriteLine("File Found");
-				int thirdline = 0;
-				string secondline = "";
+				Console.WriteLine("File Found Settings: " + settings);
+				int propvalue = 0;
+				string propname = "";
 				string[] tempstrings = new string[ElementListCount];
 				int[] tempints = new int[ElementListCount];
 				using (StreamReader r = new StreamReader(settings))
@@ -163,31 +160,32 @@ namespace DbD_Autoskillchecks.Core.Files
 					{
 						for (int v = 0; v < property.PropertyAmount; v++)
 						{
-							Console.WriteLine(v);
+							//Console.WriteLine(v);
 							switch (v)
 							{
 								case 0:
-									r.ReadLine();
+									propname = r.ReadLine();
 									break;
 
 								case 1:
-									secondline = r.ReadLine();
+									r.ReadLine();
 									break;
 
 								case 2:
-									thirdline = int.Parse(r.ReadLine());
+									propvalue = int.Parse(r.ReadLine());
 									break;
 							}
 						}
 						//Console.WriteLine(c);
 						//Console.WriteLine(secondline);
 						//Console.WriteLine(thirdline);
-						tempstrings[c] = secondline;
-						tempints[c] = thirdline;
+						tempstrings[c] = propname;
+						tempints[c] = propvalue;
 					}
-					Properties.Clear();
+
 					for (int i = 0; i < ElementListCount; i++)
 					{
+						Console.WriteLine("{0} \n {1} \n {2} \n",tempstrings[i], i, tempints[i]);
 						AddProperty(tempstrings[i], tempints[i]);
 					}
 				}

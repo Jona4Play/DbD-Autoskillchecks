@@ -13,7 +13,7 @@ namespace DbD_Autoskillchecks.MWN.View
 	/// </summary>
 	public partial class DebugView : UserControl
 	{
-		private CoreHandler handler = new CoreHandler();
+		
 		private TargetDirectory targetDirectory = new TargetDirectory();
 
 		public DebugView()
@@ -42,7 +42,7 @@ namespace DbD_Autoskillchecks.MWN.View
 
 		private void CheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
 		{
-			handler.DebugRoutine();
+			CoreHandlerGlobal.DebugRoutine();
 		}
 	}
 }
